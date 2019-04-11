@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D367A425-ECD5-43D0-9623-AF63217B1879}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>koi</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="Doumi.Nexon">
+      <HintPath>.\Doumi.Nexon.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Doumi\Bot\AutoExpSell.cs" />
+    <Compile Include="Doumi\Bot\AutoGroup.cs" />
+    <Compile Include="Doumi\Bot\Hunt_Monk.cs" />
+    <Compile Include="Doumi\Bot\Hunt_Rogue.cs" />
+    <Compile Include="Doumi\Bot\Hunt_Warrior.cs" />
+    <Compile Include="Doumi\Bot\SuspiciousMushroom.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="InternetTime\SNTPClient.cs" />
+    <Compile Include="InternetTime\_LeapIndicator.cs" />
+    <Compile Include="InternetTime\_Mode.cs" />
+    <Compile Include="InternetTime\_Stratum.cs" />
+    <Compile Include="Doumi\Extensions.cs" />
+    <Compile Include="Doumi\FormInspector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doumi\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doumi\FormPatron.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doumi\Metafile.cs" />
+    <Compile Include="Doumi\Program.cs" />
+    <Compile Include="Doumi\SenseMonster.cs" />
+    <Compile Include="Doumi\Properties\Resources.cs" />
+    <Compile Include="Doumi\Properties\Settings.cs" />
+    <Compile Include="Doumi\Types\Aisling.cs" />
+    <Compile Include="Doumi\Types\Buff.cs" />
+    <Compile Include="Doumi\Types\Certificate.cs" />
+    <Compile Include="Doumi\Types\Coord.cs" />
+    <Compile Include="Doumi\Types\DeSpellList.cs" />
+    <Compile Include="Doumi\Types\Dialog2F.cs" />
+    <Compile Include="Doumi\Types\Direction.cs" />
+    <Compile Include="Doumi\Types\Equip.cs" />
+    <Compile Include="Doumi\Types\Field.cs" />
+    <Compile Include="Doumi\Types\GroupMember.cs" />
+    <Compile Include="Doumi\Types\MapItem.cs" />
+    <Compile Include="Doumi\Types\Monster.cs" />
+    <Compile Include="Doumi\Types\Mundane.cs" />
+    <Compile Include="Doumi\Types\ProtectList.cs" />
+    <Compile Include="Doumi\Types\SignalProperty!1.cs" />
+    <Compile Include="Doumi\Types\Skill.cs" />
+    <Compile Include="Doumi\Types\SlotObject.cs" />
+    <Compile Include="Doumi\Types\SlotObjectCollection!2.cs" />
+    <Compile Include="Doumi\Types\Spell.cs" />
+    <Compile Include="Doumi\Types\SpellEffect.cs" />
+    <Compile Include="Doumi\Types\Sprite.cs" />
+    <Compile Include="Doumi\Types\Sprite!1.cs" />
+    <Compile Include="Doumi\Types\Stock.cs" />
+    <Compile Include="Doumi\Pathfinding\PathFinder.cs" />
+    <Compile Include="Doumi\Pathfinding\PriorityQueue.cs" />
+    <Compile Include="Doumi\Net\ProxyPatron.cs" />
+    <Compile Include="Doumi\Net\ProxyPatronSettings.cs" />
+    <Compile Include="Doumi\Net\ProxyServer.cs" />
+    <Compile Include="Doumi\Nexon\Net\NexonPatron!1.cs" />
+    <Compile Include="Doumi\Modules\AreaModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doumi\Modules\ChatModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doumi\Modules\MacroModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doumi\Modules\NetworkExplorerModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doumi\Bot\Alert.cs" />
+    <Compile Include="Doumi\Bot\Base.cs" />
+    <Compile Include="Doumi\Bot\BuffControl.cs" />
+    <Compile Include="Doumi\Bot\Collection.cs" />
+    <Compile Include="Doumi\Bot\Curse.cs" />
+    <Compile Include="Doumi\Bot\Despell.cs" />
+    <Compile Include="Doumi\Bot\Divorce.cs" />
+    <Compile Include="Doumi\Bot\Fix.cs" />
+    <Compile Include="Doumi\Bot\Hunt_Bard.cs" />
+    <Compile Include="Doumi\Bot\Hunt_Wizard.cs" />
+    <Compile Include="Doumi\Bot\Loot.cs" />
+    <Compile Include="Doumi\Bot\MapMove.cs" />
+    <Compile Include="Doumi\Bot\Protect.cs" />
+    <Compile Include="Doumi\Bot\War.cs" />
+    <Compile Include="ConfusedByAttribute.cs" />
+    <EmbeddedResource Include="Doumi.FormInspector.resources" />
+    <EmbeddedResource Include="Doumi.FormMain.resources" />
+    <EmbeddedResource Include="Doumi.FormPatron.resources" />
+    <EmbeddedResource Include="Doumi.Modules.AreaModule.resources" />
+    <EmbeddedResource Include="Doumi.Modules.ChatModule.resources" />
+    <EmbeddedResource Include="Doumi.Modules.MacroModule.resources" />
+    <EmbeddedResource Include="Doumi.Modules.NetworkExplorerModule.resources" />
+    <EmbeddedResource Include="Doumi.Properties.Resources.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+</Project>
