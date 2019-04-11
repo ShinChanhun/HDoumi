@@ -221,7 +221,10 @@
         public TextBox tb층;
         public CheckBox check브론;
         public string[] groupList;
-
+        public CheckBox chk밀트1;
+        public CheckBox chk밀트4;
+        public CheckBox chk밀트3;
+        public CheckBox chk밀트2;
         int[] monsterArr = { 16586, 16701, 16590, 16699, /*베레스16593,*/ 16700, 16702 };
 
         public bool CheckMonster(ushort icon)
@@ -371,7 +374,7 @@
             //}
             //Program.Form.ThreadSafeInvoke(() => this.chk맵이동.Checked = true);
 
-            if(_loot == null)
+            if (_loot == null)
             {
                 _loot = new Loot(this.Patron);
                 _loot.Start();
@@ -394,7 +397,7 @@
                     this.chkKolama.Checked = true;
                     this.chkHorrma.Checked = true;
 
-                    if(_despell == null)
+                    if (_despell == null)
                     {
                         _despell = new Despell(this.Patron);
                         _despell.Start();
@@ -406,7 +409,7 @@
                     this.chk델리.Checked = true;
                     this.chkSA.Checked = true;
 
-                    if(_curse == null)
+                    if (_curse == null)
                     {
                         _curse = new Curse(this.Patron);
                         _curse.Start();
@@ -825,6 +828,61 @@
                 this._autoGroup.Start();
             }
             if ((this.Patron.Form != null) && !this.chk자그.Checked)
+            {
+                this._autoGroup.Abort();
+                this._autoGroup = null;
+            }
+        }
+
+        private void chk밀트1_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((this.Patron.Form != null) && this.chk자그.Checked)
+            {
+                this._autoGroup = new AutoGroup(this.Patron);
+                this._autoGroup.Start();
+            }
+            if ((this.Patron.Form != null) && !this.chk자그.Checked)
+            {
+                this._autoGroup.Abort();
+                this._autoGroup = null;
+            }
+        }
+        private void chk밀트2_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((this.Patron.Form != null) && this.chk자그.Checked)
+            {
+                this._autoGroup = new AutoGroup(this.Patron);
+                this._autoGroup.Start();
+            }
+            if ((this.Patron.Form != null) && !this.chk자그.Checked)
+            {
+                this._autoGroup.Abort();
+                this._autoGroup = null;
+            }
+        }
+
+        private void chk밀트3_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((this.Patron.Form != null) && this.chk자그.Checked)
+            {
+                this._autoGroup = new AutoGroup(this.Patron);
+                this._autoGroup.Start();
+            }
+            if ((this.Patron.Form != null) && !this.chk밀트4.Checked)
+            {
+                this._autoGroup.Abort();
+                this._autoGroup = null;
+            }
+        }
+
+        private void chk밀트4_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((this.Patron.Form != null) && this.chk밀트4.Checked)
+            {
+                this._autoGroup = new AutoGroup(this.Patron);
+                this._autoGroup.Start();
+            }
+            if ((this.Patron.Form != null) && !this.chk밀트4.Checked)
             {
                 this._autoGroup.Abort();
                 this._autoGroup = null;
@@ -1607,7 +1665,7 @@
             }
             this.Patron.SendMessage(3, "{=b잘못된 아이템 입니다.");
             return;
-        Label_18FF:
+            Label_18FF:
             this.Patron.SendMessage(2, "{=b잘못 된 명령 입니다.");
         }
 
@@ -1808,6 +1866,8 @@
             this.chk밀신경팔체 = new System.Windows.Forms.CheckBox();
             this.chk밀신경팔마 = new System.Windows.Forms.CheckBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.chk밀트1 = new System.Windows.Forms.CheckBox();
+            this.chk맵이동 = new System.Windows.Forms.CheckBox();
             this.check갬유 = new System.Windows.Forms.CheckBox();
             this.check블랙 = new System.Windows.Forms.CheckBox();
             this.check레드 = new System.Windows.Forms.CheckBox();
@@ -1815,7 +1875,9 @@
             this.field층 = new System.Windows.Forms.Label();
             this.tb층 = new System.Windows.Forms.TextBox();
             this.check브론 = new System.Windows.Forms.CheckBox();
-            this.chk맵이동 = new System.Windows.Forms.CheckBox();
+            this.chk밀트2 = new System.Windows.Forms.CheckBox();
+            this.chk밀트3 = new System.Windows.Forms.CheckBox();
+            this.chk밀트4 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -1859,12 +1921,12 @@
             this.groupBox1.Controls.Add(this.chk그룹원위치추적);
             this.groupBox1.Controls.Add(this.chk따라가기);
             this.groupBox1.Controls.Add(this.tbTarget);
-            this.groupBox1.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox1.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(1, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Size = new System.Drawing.Size(422, 41);
+            this.groupBox1.Size = new System.Drawing.Size(482, 51);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "그룹";
@@ -1872,18 +1934,19 @@
             // lbTarget
             // 
             this.lbTarget.AutoSize = true;
-            this.lbTarget.Location = new System.Drawing.Point(256, 17);
+            this.lbTarget.Location = new System.Drawing.Point(293, 21);
             this.lbTarget.Name = "lbTarget";
-            this.lbTarget.Size = new System.Drawing.Size(56, 11);
+            this.lbTarget.Size = new System.Drawing.Size(73, 14);
             this.lbTarget.TabIndex = 2;
             this.lbTarget.Text = "목표대상 :";
             // 
             // chk그룹원위치추적
             // 
             this.chk그룹원위치추적.AutoSize = true;
-            this.chk그룹원위치추적.Location = new System.Drawing.Point(4, 17);
+            this.chk그룹원위치추적.Location = new System.Drawing.Point(5, 21);
+            this.chk그룹원위치추적.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk그룹원위치추적.Name = "chk그룹원위치추적";
-            this.chk그룹원위치추적.Size = new System.Drawing.Size(105, 15);
+            this.chk그룹원위치추적.Size = new System.Drawing.Size(132, 18);
             this.chk그룹원위치추적.TabIndex = 1;
             this.chk그룹원위치추적.Text = "그룹원 위치추적";
             this.chk그룹원위치추적.UseVisualStyleBackColor = true;
@@ -1892,30 +1955,32 @@
             // chk따라가기
             // 
             this.chk따라가기.AutoSize = true;
-            this.chk따라가기.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk따라가기.Location = new System.Drawing.Point(115, 16);
+            this.chk따라가기.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk따라가기.Location = new System.Drawing.Point(131, 20);
+            this.chk따라가기.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk따라가기.Name = "chk따라가기";
-            this.chk따라가기.Size = new System.Drawing.Size(105, 15);
+            this.chk따라가기.Size = new System.Drawing.Size(132, 18);
             this.chk따라가기.TabIndex = 2;
             this.chk따라가기.Text = "그룹원 따라가기";
             this.chk따라가기.UseVisualStyleBackColor = true;
             // 
             // tbTarget
             // 
-            this.tbTarget.Location = new System.Drawing.Point(318, 14);
+            this.tbTarget.Location = new System.Drawing.Point(363, 18);
+            this.tbTarget.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbTarget.Name = "tbTarget";
-            this.tbTarget.Size = new System.Drawing.Size(93, 20);
+            this.tbTarget.Size = new System.Drawing.Size(106, 23);
             this.tbTarget.TabIndex = 153;
             // 
             // chk세토아가호
             // 
             this.chk세토아가호.AutoSize = true;
-            this.chk세토아가호.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk세토아가호.Location = new System.Drawing.Point(4, 36);
+            this.chk세토아가호.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk세토아가호.Location = new System.Drawing.Point(5, 45);
             this.chk세토아가호.Margin = new System.Windows.Forms.Padding(1);
             this.chk세토아가호.Name = "chk세토아가호";
             this.chk세토아가호.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk세토아가호.Size = new System.Drawing.Size(79, 15);
+            this.chk세토아가호.Size = new System.Drawing.Size(99, 18);
             this.chk세토아가호.TabIndex = 110;
             this.chk세토아가호.Text = "세토아가호";
             this.chk세토아가호.UseVisualStyleBackColor = true;
@@ -1923,12 +1988,12 @@
             // chk이아가호
             // 
             this.chk이아가호.AutoSize = true;
-            this.chk이아가호.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk이아가호.Location = new System.Drawing.Point(4, 19);
+            this.chk이아가호.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk이아가호.Location = new System.Drawing.Point(5, 24);
             this.chk이아가호.Margin = new System.Windows.Forms.Padding(1);
             this.chk이아가호.Name = "chk이아가호";
             this.chk이아가호.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk이아가호.Size = new System.Drawing.Size(68, 15);
+            this.chk이아가호.Size = new System.Drawing.Size(85, 18);
             this.chk이아가호.TabIndex = 111;
             this.chk이아가호.Text = "이아가호";
             this.chk이아가호.UseVisualStyleBackColor = true;
@@ -1936,12 +2001,12 @@
             // chk모션제거
             // 
             this.chk모션제거.AutoSize = true;
-            this.chk모션제거.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk모션제거.Location = new System.Drawing.Point(4, 52);
+            this.chk모션제거.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk모션제거.Location = new System.Drawing.Point(5, 65);
             this.chk모션제거.Margin = new System.Windows.Forms.Padding(1);
             this.chk모션제거.Name = "chk모션제거";
             this.chk모션제거.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk모션제거.Size = new System.Drawing.Size(68, 15);
+            this.chk모션제거.Size = new System.Drawing.Size(85, 18);
             this.chk모션제거.TabIndex = 129;
             this.chk모션제거.Text = "모션제거";
             this.chk모션제거.UseVisualStyleBackColor = true;
@@ -1949,12 +2014,12 @@
             // chk센서스핵
             // 
             this.chk센서스핵.AutoSize = true;
-            this.chk센서스핵.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk센서스핵.Location = new System.Drawing.Point(4, 69);
+            this.chk센서스핵.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk센서스핵.Location = new System.Drawing.Point(5, 86);
             this.chk센서스핵.Margin = new System.Windows.Forms.Padding(1);
             this.chk센서스핵.Name = "chk센서스핵";
             this.chk센서스핵.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk센서스핵.Size = new System.Drawing.Size(68, 15);
+            this.chk센서스핵.Size = new System.Drawing.Size(85, 18);
             this.chk센서스핵.TabIndex = 131;
             this.chk센서스핵.Text = "센서스핵";
             this.chk센서스핵.UseVisualStyleBackColor = true;
@@ -1962,12 +2027,12 @@
             // chk자동부활
             // 
             this.chk자동부활.AutoSize = true;
-            this.chk자동부활.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동부활.Location = new System.Drawing.Point(4, 137);
+            this.chk자동부활.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동부활.Location = new System.Drawing.Point(5, 171);
             this.chk자동부활.Margin = new System.Windows.Forms.Padding(1);
             this.chk자동부활.Name = "chk자동부활";
             this.chk자동부활.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk자동부활.Size = new System.Drawing.Size(68, 15);
+            this.chk자동부활.Size = new System.Drawing.Size(85, 18);
             this.chk자동부활.TabIndex = 126;
             this.chk자동부활.Text = "자동부활";
             this.chk자동부활.UseVisualStyleBackColor = true;
@@ -1975,12 +2040,12 @@
             // chk유저회피
             // 
             this.chk유저회피.AutoSize = true;
-            this.chk유저회피.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk유저회피.Location = new System.Drawing.Point(4, 103);
+            this.chk유저회피.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk유저회피.Location = new System.Drawing.Point(5, 129);
             this.chk유저회피.Margin = new System.Windows.Forms.Padding(1);
             this.chk유저회피.Name = "chk유저회피";
             this.chk유저회피.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk유저회피.Size = new System.Drawing.Size(68, 15);
+            this.chk유저회피.Size = new System.Drawing.Size(85, 18);
             this.chk유저회피.TabIndex = 124;
             this.chk유저회피.Text = "유저회피";
             this.chk유저회피.UseVisualStyleBackColor = true;
@@ -2008,22 +2073,24 @@
             this.groupBox4.Controls.Add(this.chk센서스핵);
             this.groupBox4.Controls.Add(this.chk자동루팅);
             this.groupBox4.Controls.Add(this.chk자동부활);
-            this.groupBox4.Location = new System.Drawing.Point(6, 6);
+            this.groupBox4.Location = new System.Drawing.Point(7, 8);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(402, 168);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox4.Size = new System.Drawing.Size(459, 210);
             this.groupBox4.TabIndex = 135;
             this.groupBox4.TabStop = false;
             // 
             // chkShot
             // 
             this.chkShot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkShot.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkShot.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkShot.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkShot.Location = new System.Drawing.Point(264, 36);
+            this.chkShot.Location = new System.Drawing.Point(302, 45);
             this.chkShot.Margin = new System.Windows.Forms.Padding(1);
             this.chkShot.Name = "chkShot";
             this.chkShot.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkShot.Size = new System.Drawing.Size(92, 15);
+            this.chkShot.Size = new System.Drawing.Size(105, 19);
             this.chkShot.TabIndex = 171;
             this.chkShot.Text = "샷사용";
             this.chkShot.UseVisualStyleBackColor = false;
@@ -2031,12 +2098,12 @@
             // chk동전깔기
             // 
             this.chk동전깔기.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk동전깔기.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk동전깔기.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk동전깔기.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk동전깔기.Location = new System.Drawing.Point(169, 86);
+            this.chk동전깔기.Location = new System.Drawing.Point(193, 108);
             this.chk동전깔기.Margin = new System.Windows.Forms.Padding(1);
             this.chk동전깔기.Name = "chk동전깔기";
-            this.chk동전깔기.Size = new System.Drawing.Size(79, 15);
+            this.chk동전깔기.Size = new System.Drawing.Size(90, 19);
             this.chk동전깔기.TabIndex = 166;
             this.chk동전깔기.Text = "동전깔기";
             this.chk동전깔기.UseVisualStyleBackColor = false;
@@ -2044,12 +2111,12 @@
             // chk원격수리
             // 
             this.chk원격수리.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk원격수리.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk원격수리.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk원격수리.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk원격수리.Location = new System.Drawing.Point(85, 52);
+            this.chk원격수리.Location = new System.Drawing.Point(97, 65);
             this.chk원격수리.Margin = new System.Windows.Forms.Padding(1);
             this.chk원격수리.Name = "chk원격수리";
-            this.chk원격수리.Size = new System.Drawing.Size(79, 15);
+            this.chk원격수리.Size = new System.Drawing.Size(90, 19);
             this.chk원격수리.TabIndex = 162;
             this.chk원격수리.Text = "원격수리";
             this.chk원격수리.UseVisualStyleBackColor = false;
@@ -2057,12 +2124,12 @@
             // chk시스템창
             // 
             this.chk시스템창.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk시스템창.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk시스템창.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk시스템창.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk시스템창.Location = new System.Drawing.Point(85, 36);
+            this.chk시스템창.Location = new System.Drawing.Point(97, 45);
             this.chk시스템창.Margin = new System.Windows.Forms.Padding(1);
             this.chk시스템창.Name = "chk시스템창";
-            this.chk시스템창.Size = new System.Drawing.Size(79, 15);
+            this.chk시스템창.Size = new System.Drawing.Size(90, 19);
             this.chk시스템창.TabIndex = 163;
             this.chk시스템창.Text = "시스템창";
             this.chk시스템창.UseVisualStyleBackColor = false;
@@ -2070,12 +2137,12 @@
             // chk수벗
             // 
             this.chk수벗.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk수벗.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk수벗.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk수벗.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk수벗.Location = new System.Drawing.Point(85, 69);
+            this.chk수벗.Location = new System.Drawing.Point(97, 86);
             this.chk수벗.Margin = new System.Windows.Forms.Padding(1);
             this.chk수벗.Name = "chk수벗";
-            this.chk수벗.Size = new System.Drawing.Size(79, 15);
+            this.chk수벗.Size = new System.Drawing.Size(90, 19);
             this.chk수벗.TabIndex = 163;
             this.chk수벗.Text = "수벗";
             this.chk수벗.UseVisualStyleBackColor = false;
@@ -2084,12 +2151,12 @@
             // chk자그
             // 
             this.chk자그.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk자그.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자그.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk자그.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk자그.Location = new System.Drawing.Point(85, 86);
+            this.chk자그.Location = new System.Drawing.Point(97, 108);
             this.chk자그.Margin = new System.Windows.Forms.Padding(1);
             this.chk자그.Name = "chk자그";
-            this.chk자그.Size = new System.Drawing.Size(79, 15);
+            this.chk자그.Size = new System.Drawing.Size(90, 19);
             this.chk자그.TabIndex = 163;
             this.chk자그.Text = "자그";
             this.chk자그.UseVisualStyleBackColor = false;
@@ -2098,12 +2165,12 @@
             // chk걸리적
             // 
             this.chk걸리적.AutoSize = true;
-            this.chk걸리적.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk걸리적.Location = new System.Drawing.Point(85, 19);
+            this.chk걸리적.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk걸리적.Location = new System.Drawing.Point(97, 24);
             this.chk걸리적.Margin = new System.Windows.Forms.Padding(1);
             this.chk걸리적.Name = "chk걸리적";
             this.chk걸리적.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk걸리적.Size = new System.Drawing.Size(57, 15);
+            this.chk걸리적.Size = new System.Drawing.Size(71, 18);
             this.chk걸리적.TabIndex = 160;
             this.chk걸리적.Text = "걸리적";
             this.chk걸리적.UseVisualStyleBackColor = true;
@@ -2111,12 +2178,12 @@
             // chk경팔마력
             // 
             this.chk경팔마력.AutoSize = true;
-            this.chk경팔마력.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk경팔마력.Location = new System.Drawing.Point(264, 76);
+            this.chk경팔마력.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk경팔마력.Location = new System.Drawing.Point(302, 95);
             this.chk경팔마력.Margin = new System.Windows.Forms.Padding(1);
             this.chk경팔마력.Name = "chk경팔마력";
             this.chk경팔마력.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk경팔마력.Size = new System.Drawing.Size(68, 15);
+            this.chk경팔마력.Size = new System.Drawing.Size(85, 18);
             this.chk경팔마력.TabIndex = 159;
             this.chk경팔마력.Text = "경팔마력";
             this.chk경팔마력.UseVisualStyleBackColor = true;
@@ -2124,12 +2191,12 @@
             // chk경팔체력
             // 
             this.chk경팔체력.AutoSize = true;
-            this.chk경팔체력.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk경팔체력.Location = new System.Drawing.Point(264, 56);
+            this.chk경팔체력.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk경팔체력.Location = new System.Drawing.Point(302, 70);
             this.chk경팔체력.Margin = new System.Windows.Forms.Padding(1);
             this.chk경팔체력.Name = "chk경팔체력";
             this.chk경팔체력.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk경팔체력.Size = new System.Drawing.Size(68, 15);
+            this.chk경팔체력.Size = new System.Drawing.Size(85, 18);
             this.chk경팔체력.TabIndex = 158;
             this.chk경팔체력.Text = "경팔체력";
             this.chk경팔체력.UseVisualStyleBackColor = true;
@@ -2137,12 +2204,12 @@
             // chk채집
             // 
             this.chk채집.AutoSize = true;
-            this.chk채집.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk채집.Location = new System.Drawing.Point(169, 52);
+            this.chk채집.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk채집.Location = new System.Drawing.Point(193, 65);
             this.chk채집.Margin = new System.Windows.Forms.Padding(1);
             this.chk채집.Name = "chk채집";
             this.chk채집.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk채집.Size = new System.Drawing.Size(46, 15);
+            this.chk채집.Size = new System.Drawing.Size(57, 18);
             this.chk채집.TabIndex = 156;
             this.chk채집.Text = "채집";
             this.chk채집.UseVisualStyleBackColor = true;
@@ -2151,12 +2218,12 @@
             // chk어설픈수리
             // 
             this.chk어설픈수리.AutoSize = true;
-            this.chk어설픈수리.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk어설픈수리.Location = new System.Drawing.Point(169, 36);
+            this.chk어설픈수리.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk어설픈수리.Location = new System.Drawing.Point(193, 45);
             this.chk어설픈수리.Margin = new System.Windows.Forms.Padding(1);
             this.chk어설픈수리.Name = "chk어설픈수리";
             this.chk어설픈수리.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk어설픈수리.Size = new System.Drawing.Size(94, 15);
+            this.chk어설픈수리.Size = new System.Drawing.Size(118, 18);
             this.chk어설픈수리.TabIndex = 155;
             this.chk어설픈수리.Text = "어설픈 고치기";
             this.chk어설픈수리.UseVisualStyleBackColor = true;
@@ -2165,13 +2232,13 @@
             // chk노룹따라가기
             // 
             this.chk노룹따라가기.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk노룹따라가기.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk노룹따라가기.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk노룹따라가기.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk노룹따라가기.Location = new System.Drawing.Point(264, 19);
+            this.chk노룹따라가기.Location = new System.Drawing.Point(302, 24);
             this.chk노룹따라가기.Margin = new System.Windows.Forms.Padding(1);
             this.chk노룹따라가기.Name = "chk노룹따라가기";
             this.chk노룹따라가기.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk노룹따라가기.Size = new System.Drawing.Size(92, 15);
+            this.chk노룹따라가기.Size = new System.Drawing.Size(105, 19);
             this.chk노룹따라가기.TabIndex = 152;
             this.chk노룹따라가기.Text = "노룹따라가기";
             this.chk노룹따라가기.UseVisualStyleBackColor = false;
@@ -2179,12 +2246,12 @@
             // chk자동사냥
             // 
             this.chk자동사냥.AutoSize = true;
-            this.chk자동사냥.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동사냥.Location = new System.Drawing.Point(169, 19);
+            this.chk자동사냥.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동사냥.Location = new System.Drawing.Point(193, 24);
             this.chk자동사냥.Margin = new System.Windows.Forms.Padding(1);
             this.chk자동사냥.Name = "chk자동사냥";
             this.chk자동사냥.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk자동사냥.Size = new System.Drawing.Size(68, 15);
+            this.chk자동사냥.Size = new System.Drawing.Size(85, 18);
             this.chk자동사냥.TabIndex = 133;
             this.chk자동사냥.Text = "자동사냥";
             this.chk자동사냥.UseVisualStyleBackColor = true;
@@ -2193,12 +2260,12 @@
             // chk연막무시
             // 
             this.chk연막무시.AutoSize = true;
-            this.chk연막무시.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk연막무시.Location = new System.Drawing.Point(4, 86);
+            this.chk연막무시.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk연막무시.Location = new System.Drawing.Point(5, 108);
             this.chk연막무시.Margin = new System.Windows.Forms.Padding(1);
             this.chk연막무시.Name = "chk연막무시";
             this.chk연막무시.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk연막무시.Size = new System.Drawing.Size(68, 15);
+            this.chk연막무시.Size = new System.Drawing.Size(85, 18);
             this.chk연막무시.TabIndex = 131;
             this.chk연막무시.Text = "연막무시";
             this.chk연막무시.UseVisualStyleBackColor = true;
@@ -2206,12 +2273,12 @@
             // chk자동루팅
             // 
             this.chk자동루팅.AutoSize = true;
-            this.chk자동루팅.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동루팅.Location = new System.Drawing.Point(169, 69);
+            this.chk자동루팅.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동루팅.Location = new System.Drawing.Point(193, 86);
             this.chk자동루팅.Margin = new System.Windows.Forms.Padding(1);
             this.chk자동루팅.Name = "chk자동루팅";
             this.chk자동루팅.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk자동루팅.Size = new System.Drawing.Size(68, 15);
+            this.chk자동루팅.Size = new System.Drawing.Size(85, 18);
             this.chk자동루팅.TabIndex = 126;
             this.chk자동루팅.Text = "자동줍기";
             this.chk자동루팅.UseVisualStyleBackColor = true;
@@ -2227,19 +2294,21 @@
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Location = new System.Drawing.Point(1, 44);
+            this.tabControl1.Location = new System.Drawing.Point(1, 55);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(423, 213);
+            this.tabControl1.Size = new System.Drawing.Size(483, 266);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(415, 187);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage1.Size = new System.Drawing.Size(475, 237);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "편의";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2255,31 +2324,32 @@
             this.tabPage4.Controls.Add(this.groupBox8);
             this.tabPage4.Controls.Add(this.groupBox7);
             this.tabPage4.Controls.Add(this.groupBox5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(415, 187);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage4.Size = new System.Drawing.Size(475, 237);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "전쟁";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tbWarTarget
             // 
-            this.tbWarTarget.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbWarTarget.Location = new System.Drawing.Point(281, 73);
+            this.tbWarTarget.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbWarTarget.Location = new System.Drawing.Point(321, 91);
             this.tbWarTarget.Margin = new System.Windows.Forms.Padding(0);
             this.tbWarTarget.Name = "tbWarTarget";
-            this.tbWarTarget.Size = new System.Drawing.Size(100, 20);
+            this.tbWarTarget.Size = new System.Drawing.Size(114, 23);
             this.tbWarTarget.TabIndex = 2;
             // 
             // chkTarget데프
             // 
             this.chkTarget데프.AutoSize = true;
-            this.chkTarget데프.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkTarget데프.Location = new System.Drawing.Point(281, 142);
+            this.chkTarget데프.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkTarget데프.Location = new System.Drawing.Point(321, 178);
             this.chkTarget데프.Margin = new System.Windows.Forms.Padding(0);
             this.chkTarget데프.Name = "chkTarget데프";
-            this.chkTarget데프.Size = new System.Drawing.Size(72, 15);
+            this.chkTarget데프.Size = new System.Drawing.Size(90, 18);
             this.chkTarget데프.TabIndex = 0;
             this.chkTarget데프.Text = "타겟 데프";
             this.chkTarget데프.UseVisualStyleBackColor = true;
@@ -2287,11 +2357,11 @@
             // chkTarget나르
             // 
             this.chkTarget나르.AutoSize = true;
-            this.chkTarget나르.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkTarget나르.Location = new System.Drawing.Point(281, 121);
+            this.chkTarget나르.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkTarget나르.Location = new System.Drawing.Point(321, 151);
             this.chkTarget나르.Margin = new System.Windows.Forms.Padding(0);
             this.chkTarget나르.Name = "chkTarget나르";
-            this.chkTarget나르.Size = new System.Drawing.Size(72, 15);
+            this.chkTarget나르.Size = new System.Drawing.Size(90, 18);
             this.chkTarget나르.TabIndex = 0;
             this.chkTarget나르.Text = "타겟 나르";
             this.chkTarget나르.UseVisualStyleBackColor = true;
@@ -2299,11 +2369,11 @@
             // checkBox18
             // 
             this.checkBox18.AutoSize = true;
-            this.checkBox18.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.checkBox18.Location = new System.Drawing.Point(281, 160);
+            this.checkBox18.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.checkBox18.Location = new System.Drawing.Point(321, 200);
             this.checkBox18.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox18.Name = "checkBox18";
-            this.checkBox18.Size = new System.Drawing.Size(119, 15);
+            this.checkBox18.Size = new System.Drawing.Size(152, 18);
             this.checkBox18.TabIndex = 0;
             this.checkBox18.Text = "타겟 연공(3칸유지)";
             this.checkBox18.UseVisualStyleBackColor = true;
@@ -2311,11 +2381,11 @@
             // chk쟁
             // 
             this.chk쟁.AutoSize = true;
-            this.chk쟁.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk쟁.Location = new System.Drawing.Point(10, 13);
+            this.chk쟁.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk쟁.Location = new System.Drawing.Point(11, 16);
             this.chk쟁.Margin = new System.Windows.Forms.Padding(0);
             this.chk쟁.Name = "chk쟁";
-            this.chk쟁.Size = new System.Drawing.Size(112, 15);
+            this.chk쟁.Size = new System.Drawing.Size(141, 18);
             this.chk쟁.TabIndex = 0;
             this.chk쟁.Text = "사용하시려면체크";
             this.chk쟁.UseVisualStyleBackColor = true;
@@ -2324,11 +2394,11 @@
             // chkTarget리베
             // 
             this.chkTarget리베.AutoSize = true;
-            this.chkTarget리베.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkTarget리베.Location = new System.Drawing.Point(281, 100);
+            this.chkTarget리베.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkTarget리베.Location = new System.Drawing.Point(321, 125);
             this.chkTarget리베.Margin = new System.Windows.Forms.Padding(0);
             this.chkTarget리베.Name = "chkTarget리베";
-            this.chkTarget리베.Size = new System.Drawing.Size(72, 15);
+            this.chkTarget리베.Size = new System.Drawing.Size(90, 18);
             this.chkTarget리베.TabIndex = 0;
             this.chkTarget리베.Text = "타겟 리베";
             this.chkTarget리베.UseVisualStyleBackColor = true;
@@ -2341,11 +2411,12 @@
             this.groupBox8.Controls.Add(this.checkBox14);
             this.groupBox8.Controls.Add(this.chk적길리베);
             this.groupBox8.Controls.Add(this.chk무길리베);
-            this.groupBox8.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox8.Location = new System.Drawing.Point(10, 109);
+            this.groupBox8.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox8.Location = new System.Drawing.Point(11, 136);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(209, 70);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox8.Size = new System.Drawing.Size(239, 88);
             this.groupBox8.TabIndex = 1;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "스킬 감지 시 리베";
@@ -2353,9 +2424,10 @@
             // checkBox11
             // 
             this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(9, 42);
+            this.checkBox11.Location = new System.Drawing.Point(10, 52);
+            this.checkBox11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(46, 15);
+            this.checkBox11.Size = new System.Drawing.Size(57, 18);
             this.checkBox11.TabIndex = 0;
             this.checkBox11.Text = "적길";
             this.checkBox11.UseVisualStyleBackColor = true;
@@ -2363,9 +2435,10 @@
             // checkBox17
             // 
             this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(129, 36);
+            this.checkBox17.Location = new System.Drawing.Point(147, 45);
+            this.checkBox17.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(46, 15);
+            this.checkBox17.Size = new System.Drawing.Size(57, 18);
             this.checkBox17.TabIndex = 0;
             this.checkBox17.Text = "완방";
             this.checkBox17.UseVisualStyleBackColor = true;
@@ -2373,9 +2446,10 @@
             // checkBox16
             // 
             this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(129, 14);
+            this.checkBox16.Location = new System.Drawing.Point(147, 18);
+            this.checkBox16.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(46, 15);
+            this.checkBox16.Size = new System.Drawing.Size(57, 18);
             this.checkBox16.TabIndex = 0;
             this.checkBox16.Text = "호르";
             this.checkBox16.UseVisualStyleBackColor = true;
@@ -2383,9 +2457,10 @@
             // checkBox14
             // 
             this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(63, 42);
+            this.checkBox14.Location = new System.Drawing.Point(72, 52);
+            this.checkBox14.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(46, 15);
+            this.checkBox14.Size = new System.Drawing.Size(57, 18);
             this.checkBox14.TabIndex = 0;
             this.checkBox14.Text = "반탄";
             this.checkBox14.UseVisualStyleBackColor = true;
@@ -2393,9 +2468,10 @@
             // chk적길리베
             // 
             this.chk적길리베.AutoSize = true;
-            this.chk적길리베.Location = new System.Drawing.Point(63, 20);
+            this.chk적길리베.Location = new System.Drawing.Point(72, 25);
+            this.chk적길리베.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk적길리베.Name = "chk적길리베";
-            this.chk적길리베.Size = new System.Drawing.Size(57, 15);
+            this.chk적길리베.Size = new System.Drawing.Size(71, 18);
             this.chk적길리베.TabIndex = 0;
             this.chk적길리베.Text = "이모탈";
             this.chk적길리베.UseVisualStyleBackColor = true;
@@ -2403,9 +2479,10 @@
             // chk무길리베
             // 
             this.chk무길리베.AutoSize = true;
-            this.chk무길리베.Location = new System.Drawing.Point(9, 20);
+            this.chk무길리베.Location = new System.Drawing.Point(10, 25);
+            this.chk무길리베.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk무길리베.Name = "chk무길리베";
-            this.chk무길리베.Size = new System.Drawing.Size(46, 15);
+            this.chk무길리베.Size = new System.Drawing.Size(57, 18);
             this.chk무길리베.TabIndex = 0;
             this.chk무길리베.Text = "무길";
             this.chk무길리베.UseVisualStyleBackColor = true;
@@ -2414,11 +2491,12 @@
             // 
             this.groupBox7.Controls.Add(this.chk적길나르);
             this.groupBox7.Controls.Add(this.chk무길나르);
-            this.groupBox7.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox7.Location = new System.Drawing.Point(10, 64);
+            this.groupBox7.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox7.Location = new System.Drawing.Point(11, 80);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(124, 42);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox7.Size = new System.Drawing.Size(142, 52);
             this.groupBox7.TabIndex = 1;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "나르";
@@ -2426,9 +2504,10 @@
             // chk적길나르
             // 
             this.chk적길나르.AutoSize = true;
-            this.chk적길나르.Location = new System.Drawing.Point(63, 20);
+            this.chk적길나르.Location = new System.Drawing.Point(72, 25);
+            this.chk적길나르.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk적길나르.Name = "chk적길나르";
-            this.chk적길나르.Size = new System.Drawing.Size(46, 15);
+            this.chk적길나르.Size = new System.Drawing.Size(57, 18);
             this.chk적길나르.TabIndex = 0;
             this.chk적길나르.Text = "적길";
             this.chk적길나르.UseVisualStyleBackColor = true;
@@ -2436,9 +2515,10 @@
             // chk무길나르
             // 
             this.chk무길나르.AutoSize = true;
-            this.chk무길나르.Location = new System.Drawing.Point(9, 20);
+            this.chk무길나르.Location = new System.Drawing.Point(10, 25);
+            this.chk무길나르.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk무길나르.Name = "chk무길나르";
-            this.chk무길나르.Size = new System.Drawing.Size(46, 15);
+            this.chk무길나르.Size = new System.Drawing.Size(57, 18);
             this.chk무길나르.TabIndex = 0;
             this.chk무길나르.Text = "무길";
             this.chk무길나르.UseVisualStyleBackColor = true;
@@ -2447,11 +2527,12 @@
             // 
             this.groupBox5.Controls.Add(this.chk적길데프);
             this.groupBox5.Controls.Add(this.chk무길데프);
-            this.groupBox5.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox5.Location = new System.Drawing.Point(10, 28);
+            this.groupBox5.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox5.Location = new System.Drawing.Point(11, 35);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(124, 35);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox5.Size = new System.Drawing.Size(142, 44);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "데프";
@@ -2459,9 +2540,10 @@
             // chk적길데프
             // 
             this.chk적길데프.AutoSize = true;
-            this.chk적길데프.Location = new System.Drawing.Point(60, 14);
+            this.chk적길데프.Location = new System.Drawing.Point(69, 18);
+            this.chk적길데프.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk적길데프.Name = "chk적길데프";
-            this.chk적길데프.Size = new System.Drawing.Size(46, 15);
+            this.chk적길데프.Size = new System.Drawing.Size(57, 18);
             this.chk적길데프.TabIndex = 0;
             this.chk적길데프.Text = "적길";
             this.chk적길데프.UseVisualStyleBackColor = true;
@@ -2469,9 +2551,10 @@
             // chk무길데프
             // 
             this.chk무길데프.AutoSize = true;
-            this.chk무길데프.Location = new System.Drawing.Point(6, 14);
+            this.chk무길데프.Location = new System.Drawing.Point(7, 18);
+            this.chk무길데프.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk무길데프.Name = "chk무길데프";
-            this.chk무길데프.Size = new System.Drawing.Size(46, 15);
+            this.chk무길데프.Size = new System.Drawing.Size(57, 18);
             this.chk무길데프.TabIndex = 0;
             this.chk무길데프.Text = "무길";
             this.chk무길데프.UseVisualStyleBackColor = true;
@@ -2479,10 +2562,11 @@
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.groupBox13);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(415, 187);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage5.Size = new System.Drawing.Size(475, 237);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "알람";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -2496,19 +2580,22 @@
             this.groupBox13.Controls.Add(this.chkStopHunt);
             this.groupBox13.Controls.Add(this.chk은신감지);
             this.groupBox13.Controls.Add(this.chk유저감지);
-            this.groupBox13.Location = new System.Drawing.Point(6, 6);
+            this.groupBox13.Location = new System.Drawing.Point(7, 8);
+            this.groupBox13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(401, 175);
+            this.groupBox13.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox13.Size = new System.Drawing.Size(458, 219);
             this.groupBox13.TabIndex = 168;
             this.groupBox13.TabStop = false;
             // 
             // chkAlert
             // 
             this.chkAlert.AutoSize = true;
-            this.chkAlert.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkAlert.Location = new System.Drawing.Point(6, 0);
+            this.chkAlert.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkAlert.Location = new System.Drawing.Point(7, 0);
+            this.chkAlert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkAlert.Name = "chkAlert";
-            this.chkAlert.Size = new System.Drawing.Size(46, 15);
+            this.chkAlert.Size = new System.Drawing.Size(57, 18);
             this.chkAlert.TabIndex = 131;
             this.chkAlert.Text = "알람";
             this.chkAlert.UseVisualStyleBackColor = true;
@@ -2517,32 +2604,33 @@
             // chkTalk1
             // 
             this.chkTalk1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkTalk1.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkTalk1.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkTalk1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkTalk1.Location = new System.Drawing.Point(6, 87);
+            this.chkTalk1.Location = new System.Drawing.Point(7, 109);
             this.chkTalk1.Margin = new System.Windows.Forms.Padding(1);
             this.chkTalk1.Name = "chkTalk1";
-            this.chkTalk1.Size = new System.Drawing.Size(70, 15);
+            this.chkTalk1.Size = new System.Drawing.Size(80, 19);
             this.chkTalk1.TabIndex = 167;
             this.chkTalk1.Text = "불렸을때";
             this.chkTalk1.UseVisualStyleBackColor = false;
             // 
             // tbTalk1
             // 
-            this.tbTalk1.Location = new System.Drawing.Point(82, 84);
+            this.tbTalk1.Location = new System.Drawing.Point(94, 105);
+            this.tbTalk1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbTalk1.Name = "tbTalk1";
-            this.tbTalk1.Size = new System.Drawing.Size(191, 21);
+            this.tbTalk1.Size = new System.Drawing.Size(218, 25);
             this.tbTalk1.TabIndex = 164;
             // 
             // chkBeep
             // 
             this.chkBeep.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkBeep.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkBeep.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkBeep.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkBeep.Location = new System.Drawing.Point(6, 19);
+            this.chkBeep.Location = new System.Drawing.Point(7, 24);
             this.chkBeep.Margin = new System.Windows.Forms.Padding(1);
             this.chkBeep.Name = "chkBeep";
-            this.chkBeep.Size = new System.Drawing.Size(59, 15);
+            this.chkBeep.Size = new System.Drawing.Size(67, 19);
             this.chkBeep.TabIndex = 163;
             this.chkBeep.Text = "비프음";
             this.chkBeep.UseVisualStyleBackColor = false;
@@ -2550,12 +2638,12 @@
             // chkStopHunt
             // 
             this.chkStopHunt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkStopHunt.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkStopHunt.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkStopHunt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkStopHunt.Location = new System.Drawing.Point(6, 36);
+            this.chkStopHunt.Location = new System.Drawing.Point(7, 45);
             this.chkStopHunt.Margin = new System.Windows.Forms.Padding(1);
             this.chkStopHunt.Name = "chkStopHunt";
-            this.chkStopHunt.Size = new System.Drawing.Size(70, 15);
+            this.chkStopHunt.Size = new System.Drawing.Size(80, 19);
             this.chkStopHunt.TabIndex = 162;
             this.chkStopHunt.Text = "사냥중지";
             this.chkStopHunt.UseVisualStyleBackColor = false;
@@ -2563,12 +2651,12 @@
             // chk은신감지
             // 
             this.chk은신감지.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk은신감지.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk은신감지.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk은신감지.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk은신감지.Location = new System.Drawing.Point(6, 70);
+            this.chk은신감지.Location = new System.Drawing.Point(7, 88);
             this.chk은신감지.Margin = new System.Windows.Forms.Padding(1);
             this.chk은신감지.Name = "chk은신감지";
-            this.chk은신감지.Size = new System.Drawing.Size(98, 15);
+            this.chk은신감지.Size = new System.Drawing.Size(112, 19);
             this.chk은신감지.TabIndex = 161;
             this.chk은신감지.Text = "은신감지리콜";
             this.chk은신감지.UseVisualStyleBackColor = false;
@@ -2576,12 +2664,12 @@
             // chk유저감지
             // 
             this.chk유저감지.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk유저감지.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk유저감지.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk유저감지.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk유저감지.Location = new System.Drawing.Point(6, 53);
+            this.chk유저감지.Location = new System.Drawing.Point(7, 66);
             this.chk유저감지.Margin = new System.Windows.Forms.Padding(1);
             this.chk유저감지.Name = "chk유저감지";
-            this.chk유저감지.Size = new System.Drawing.Size(111, 15);
+            this.chk유저감지.Size = new System.Drawing.Size(127, 19);
             this.chk유저감지.TabIndex = 161;
             this.chk유저감지.Text = "유저발견리콜";
             this.chk유저감지.UseVisualStyleBackColor = false;
@@ -2590,10 +2678,11 @@
             // 
             this.tabPage2.Controls.Add(this.groupBox11);
             this.tabPage2.Controls.Add(this.groupBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(415, 187);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage2.Size = new System.Drawing.Size(475, 237);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "디스펠";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2604,19 +2693,22 @@
             this.groupBox11.Controls.Add(this.chkKolama);
             this.groupBox11.Controls.Add(this.chkHorrma);
             this.groupBox11.Controls.Add(this.chkSA);
-            this.groupBox11.Location = new System.Drawing.Point(198, 5);
+            this.groupBox11.Location = new System.Drawing.Point(226, 6);
+            this.groupBox11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(211, 176);
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox11.Size = new System.Drawing.Size(241, 220);
             this.groupBox11.TabIndex = 148;
             this.groupBox11.TabStop = false;
             // 
             // chk버프
             // 
             this.chk버프.AutoSize = true;
-            this.chk버프.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk버프.Location = new System.Drawing.Point(6, 1);
+            this.chk버프.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk버프.Location = new System.Drawing.Point(7, 1);
+            this.chk버프.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk버프.Name = "chk버프";
-            this.chk버프.Size = new System.Drawing.Size(90, 15);
+            this.chk버프.Size = new System.Drawing.Size(113, 18);
             this.chk버프.TabIndex = 1;
             this.chk버프.Text = "버프주기사용";
             this.chk버프.UseVisualStyleBackColor = true;
@@ -2625,10 +2717,11 @@
             // chkKolama
             // 
             this.chkKolama.AutoSize = true;
-            this.chkKolama.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkKolama.Location = new System.Drawing.Point(56, 20);
+            this.chkKolama.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkKolama.Location = new System.Drawing.Point(64, 25);
+            this.chkKolama.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkKolama.Name = "chkKolama";
-            this.chkKolama.Size = new System.Drawing.Size(46, 15);
+            this.chkKolama.Size = new System.Drawing.Size(57, 18);
             this.chkKolama.TabIndex = 146;
             this.chkKolama.Text = "콜라";
             this.chkKolama.UseVisualStyleBackColor = true;
@@ -2636,11 +2729,11 @@
             // chkHorrma
             // 
             this.chkHorrma.AutoSize = true;
-            this.chkHorrma.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkHorrma.Location = new System.Drawing.Point(6, 20);
+            this.chkHorrma.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkHorrma.Location = new System.Drawing.Point(7, 25);
             this.chkHorrma.Margin = new System.Windows.Forms.Padding(1);
             this.chkHorrma.Name = "chkHorrma";
-            this.chkHorrma.Size = new System.Drawing.Size(46, 15);
+            this.chkHorrma.Size = new System.Drawing.Size(57, 18);
             this.chkHorrma.TabIndex = 145;
             this.chkHorrma.Text = "호르";
             this.chkHorrma.UseVisualStyleBackColor = true;
@@ -2648,11 +2741,11 @@
             // chkSA
             // 
             this.chkSA.AutoSize = true;
-            this.chkSA.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkSA.Location = new System.Drawing.Point(6, 37);
+            this.chkSA.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkSA.Location = new System.Drawing.Point(7, 46);
             this.chkSA.Margin = new System.Windows.Forms.Padding(1);
             this.chkSA.Name = "chkSA";
-            this.chkSA.Size = new System.Drawing.Size(46, 15);
+            this.chkSA.Size = new System.Drawing.Size(57, 18);
             this.chkSA.TabIndex = 147;
             this.chkSA.Text = "속강";
             this.chkSA.UseVisualStyleBackColor = true;
@@ -2678,23 +2771,23 @@
             this.groupBox3.Controls.Add(this.chkHolyCure);
             this.groupBox3.Controls.Add(this.chkDePrava);
             this.groupBox3.Controls.Add(this.chkDeRento);
-            this.groupBox3.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox3.Location = new System.Drawing.Point(6, 6);
+            this.groupBox3.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox3.Location = new System.Drawing.Point(7, 8);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(1);
-            this.groupBox3.Size = new System.Drawing.Size(189, 175);
+            this.groupBox3.Size = new System.Drawing.Size(216, 219);
             this.groupBox3.TabIndex = 136;
             this.groupBox3.TabStop = false;
             // 
             // chk디스펠
             // 
             this.chk디스펠.AutoSize = true;
-            this.chk디스펠.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk디스펠.Location = new System.Drawing.Point(4, 0);
+            this.chk디스펠.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk디스펠.Location = new System.Drawing.Point(5, 0);
             this.chk디스펠.Margin = new System.Windows.Forms.Padding(1);
             this.chk디스펠.Name = "chk디스펠";
-            this.chk디스펠.Size = new System.Drawing.Size(79, 15);
+            this.chk디스펠.Size = new System.Drawing.Size(99, 18);
             this.chk디스펠.TabIndex = 1;
             this.chk디스펠.Text = "디스펠사용";
             this.chk디스펠.UseVisualStyleBackColor = true;
@@ -2703,11 +2796,11 @@
             // chkTargetAll
             // 
             this.chkTargetAll.AutoSize = true;
-            this.chkTargetAll.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkTargetAll.Location = new System.Drawing.Point(4, 19);
+            this.chkTargetAll.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkTargetAll.Location = new System.Drawing.Point(5, 24);
             this.chkTargetAll.Margin = new System.Windows.Forms.Padding(1);
             this.chkTargetAll.Name = "chkTargetAll";
-            this.chkTargetAll.Size = new System.Drawing.Size(46, 15);
+            this.chkTargetAll.Size = new System.Drawing.Size(57, 18);
             this.chkTargetAll.TabIndex = 144;
             this.chkTargetAll.Text = "전체";
             this.chkTargetAll.UseVisualStyleBackColor = true;
@@ -2715,11 +2808,11 @@
             // chk자신
             // 
             this.chk자신.AutoSize = true;
-            this.chk자신.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자신.Location = new System.Drawing.Point(4, 70);
+            this.chk자신.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자신.Location = new System.Drawing.Point(5, 88);
             this.chk자신.Margin = new System.Windows.Forms.Padding(1);
             this.chk자신.Name = "chk자신";
-            this.chk자신.Size = new System.Drawing.Size(46, 15);
+            this.chk자신.Size = new System.Drawing.Size(57, 18);
             this.chk자신.TabIndex = 142;
             this.chk자신.Text = "자신";
             this.chk자신.UseVisualStyleBackColor = true;
@@ -2727,11 +2820,11 @@
             // chkTagetGroup
             // 
             this.chkTagetGroup.AutoSize = true;
-            this.chkTagetGroup.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkTagetGroup.Location = new System.Drawing.Point(4, 53);
+            this.chkTagetGroup.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkTagetGroup.Location = new System.Drawing.Point(5, 66);
             this.chkTagetGroup.Margin = new System.Windows.Forms.Padding(1);
             this.chkTagetGroup.Name = "chkTagetGroup";
-            this.chkTagetGroup.Size = new System.Drawing.Size(46, 15);
+            this.chkTagetGroup.Size = new System.Drawing.Size(57, 18);
             this.chkTagetGroup.TabIndex = 142;
             this.chkTagetGroup.Text = "그룹";
             this.chkTagetGroup.UseVisualStyleBackColor = true;
@@ -2740,11 +2833,11 @@
             // 
             this.tbGroupHeal.AutoSize = false;
             this.tbGroupHeal.BackColor = System.Drawing.SystemColors.Control;
-            this.tbGroupHeal.Location = new System.Drawing.Point(86, 121);
+            this.tbGroupHeal.Location = new System.Drawing.Point(98, 151);
             this.tbGroupHeal.Margin = new System.Windows.Forms.Padding(1);
             this.tbGroupHeal.Maximum = 100;
             this.tbGroupHeal.Name = "tbGroupHeal";
-            this.tbGroupHeal.Size = new System.Drawing.Size(80, 15);
+            this.tbGroupHeal.Size = new System.Drawing.Size(91, 19);
             this.tbGroupHeal.TabIndex = 141;
             this.tbGroupHeal.TickFrequency = 10;
             this.tbGroupHeal.Value = 90;
@@ -2753,12 +2846,12 @@
             // chkDeNarcoli
             // 
             this.chkDeNarcoli.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkDeNarcoli.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkDeNarcoli.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkDeNarcoli.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkDeNarcoli.Location = new System.Drawing.Point(62, 104);
+            this.chkDeNarcoli.Location = new System.Drawing.Point(71, 130);
             this.chkDeNarcoli.Margin = new System.Windows.Forms.Padding(1);
             this.chkDeNarcoli.Name = "chkDeNarcoli";
-            this.chkDeNarcoli.Size = new System.Drawing.Size(50, 15);
+            this.chkDeNarcoli.Size = new System.Drawing.Size(57, 19);
             this.chkDeNarcoli.TabIndex = 131;
             this.chkDeNarcoli.Text = "디나";
             this.chkDeNarcoli.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2767,11 +2860,11 @@
             // chkTagetGuild
             // 
             this.chkTagetGuild.AutoSize = true;
-            this.chkTagetGuild.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkTagetGuild.Location = new System.Drawing.Point(4, 36);
+            this.chkTagetGuild.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkTagetGuild.Location = new System.Drawing.Point(5, 45);
             this.chkTagetGuild.Margin = new System.Windows.Forms.Padding(1);
             this.chkTagetGuild.Name = "chkTagetGuild";
-            this.chkTagetGuild.Size = new System.Drawing.Size(57, 15);
+            this.chkTagetGuild.Size = new System.Drawing.Size(71, 18);
             this.chkTagetGuild.TabIndex = 143;
             this.chkTagetGuild.Text = "길드원";
             this.chkTagetGuild.UseVisualStyleBackColor = true;
@@ -2779,11 +2872,11 @@
             // chk그룹전체힐
             // 
             this.chk그룹전체힐.AutoSize = true;
-            this.chk그룹전체힐.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk그룹전체힐.Location = new System.Drawing.Point(4, 138);
+            this.chk그룹전체힐.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk그룹전체힐.Location = new System.Drawing.Point(5, 172);
             this.chk그룹전체힐.Margin = new System.Windows.Forms.Padding(1);
             this.chk그룹전체힐.Name = "chk그룹전체힐";
-            this.chk그룹전체힐.Size = new System.Drawing.Size(153, 15);
+            this.chk그룹전체힐.Size = new System.Drawing.Size(195, 18);
             this.chk그룹전체힐.TabIndex = 138;
             this.chk그룹전체힐.Text = "온니전체힐(홀리쿠라네라)";
             this.chk그룹전체힐.UseVisualStyleBackColor = true;
@@ -2791,11 +2884,11 @@
             // chk그룹힐
             // 
             this.chk그룹힐.AutoSize = true;
-            this.chk그룹힐.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk그룹힐.Location = new System.Drawing.Point(4, 121);
+            this.chk그룹힐.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk그룹힐.Location = new System.Drawing.Point(5, 151);
             this.chk그룹힐.Margin = new System.Windows.Forms.Padding(1);
             this.chk그룹힐.Name = "chk그룹힐";
-            this.chk그룹힐.Size = new System.Drawing.Size(57, 15);
+            this.chk그룹힐.Size = new System.Drawing.Size(71, 18);
             this.chk그룹힐.TabIndex = 138;
             this.chk그룹힐.Text = "그룹힐";
             this.chk그룹힐.UseVisualStyleBackColor = true;
@@ -2803,12 +2896,12 @@
             // chkDeDefleca
             // 
             this.chkDeDefleca.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkDeDefleca.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkDeDefleca.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkDeDefleca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkDeDefleca.Location = new System.Drawing.Point(62, 19);
+            this.chkDeDefleca.Location = new System.Drawing.Point(71, 24);
             this.chkDeDefleca.Margin = new System.Windows.Forms.Padding(1);
             this.chkDeDefleca.Name = "chkDeDefleca";
-            this.chkDeDefleca.Size = new System.Drawing.Size(50, 15);
+            this.chkDeDefleca.Size = new System.Drawing.Size(57, 19);
             this.chkDeDefleca.TabIndex = 134;
             this.chkDeDefleca.Text = "디데";
             this.chkDeDefleca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2817,12 +2910,12 @@
             // chkDeSoruma
             // 
             this.chkDeSoruma.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkDeSoruma.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkDeSoruma.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkDeSoruma.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkDeSoruma.Location = new System.Drawing.Point(62, 87);
+            this.chkDeSoruma.Location = new System.Drawing.Point(71, 109);
             this.chkDeSoruma.Margin = new System.Windows.Forms.Padding(1);
             this.chkDeSoruma.Name = "chkDeSoruma";
-            this.chkDeSoruma.Size = new System.Drawing.Size(50, 15);
+            this.chkDeSoruma.Size = new System.Drawing.Size(57, 19);
             this.chkDeSoruma.TabIndex = 129;
             this.chkDeSoruma.Text = "디소";
             this.chkDeSoruma.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2831,11 +2924,11 @@
             // chk자동저주풀기
             // 
             this.chk자동저주풀기.AutoSize = true;
-            this.chk자동저주풀기.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동저주풀기.Location = new System.Drawing.Point(116, 53);
+            this.chk자동저주풀기.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동저주풀기.Location = new System.Drawing.Point(133, 66);
             this.chk자동저주풀기.Margin = new System.Windows.Forms.Padding(1);
             this.chk자동저주풀기.Name = "chk자동저주풀기";
-            this.chk자동저주풀기.Size = new System.Drawing.Size(68, 15);
+            this.chk자동저주풀기.Size = new System.Drawing.Size(85, 18);
             this.chk자동저주풀기.TabIndex = 140;
             this.chk자동저주풀기.Text = "저주풀기";
             this.chk자동저주풀기.UseVisualStyleBackColor = true;
@@ -2843,11 +2936,11 @@
             // chk코마
             // 
             this.chk코마.AutoSize = true;
-            this.chk코마.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk코마.Location = new System.Drawing.Point(62, 70);
+            this.chk코마.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk코마.Location = new System.Drawing.Point(71, 88);
             this.chk코마.Margin = new System.Windows.Forms.Padding(1);
             this.chk코마.Name = "chk코마";
-            this.chk코마.Size = new System.Drawing.Size(79, 15);
+            this.chk코마.Size = new System.Drawing.Size(99, 18);
             this.chk코마.TabIndex = 139;
             this.chk코마.Text = "코마살리기";
             this.chk코마.UseVisualStyleBackColor = true;
@@ -2855,12 +2948,12 @@
             // chkIllumena
             // 
             this.chkIllumena.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkIllumena.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkIllumena.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkIllumena.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkIllumena.Location = new System.Drawing.Point(116, 36);
+            this.chkIllumena.Location = new System.Drawing.Point(133, 45);
             this.chkIllumena.Margin = new System.Windows.Forms.Padding(1);
             this.chkIllumena.Name = "chkIllumena";
-            this.chkIllumena.Size = new System.Drawing.Size(50, 15);
+            this.chkIllumena.Size = new System.Drawing.Size(57, 19);
             this.chkIllumena.TabIndex = 135;
             this.chkIllumena.Text = "일루";
             this.chkIllumena.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2869,12 +2962,12 @@
             // chkDeBardo
             // 
             this.chkDeBardo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkDeBardo.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkDeBardo.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkDeBardo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkDeBardo.Location = new System.Drawing.Point(4, 104);
+            this.chkDeBardo.Location = new System.Drawing.Point(5, 130);
             this.chkDeBardo.Margin = new System.Windows.Forms.Padding(1);
             this.chkDeBardo.Name = "chkDeBardo";
-            this.chkDeBardo.Size = new System.Drawing.Size(50, 15);
+            this.chkDeBardo.Size = new System.Drawing.Size(57, 19);
             this.chkDeBardo.TabIndex = 132;
             this.chkDeBardo.Text = "디바";
             this.chkDeBardo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2883,12 +2976,12 @@
             // chkDeVenomo
             // 
             this.chkDeVenomo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkDeVenomo.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkDeVenomo.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkDeVenomo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkDeVenomo.Location = new System.Drawing.Point(116, 19);
+            this.chkDeVenomo.Location = new System.Drawing.Point(133, 24);
             this.chkDeVenomo.Margin = new System.Windows.Forms.Padding(1);
             this.chkDeVenomo.Name = "chkDeVenomo";
-            this.chkDeVenomo.Size = new System.Drawing.Size(50, 15);
+            this.chkDeVenomo.Size = new System.Drawing.Size(57, 19);
             this.chkDeVenomo.TabIndex = 133;
             this.chkDeVenomo.Text = "디베";
             this.chkDeVenomo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2897,12 +2990,12 @@
             // chkHolyCure
             // 
             this.chkHolyCure.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkHolyCure.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkHolyCure.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkHolyCure.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkHolyCure.Location = new System.Drawing.Point(62, 53);
+            this.chkHolyCure.Location = new System.Drawing.Point(71, 66);
             this.chkHolyCure.Margin = new System.Windows.Forms.Padding(1);
             this.chkHolyCure.Name = "chkHolyCure";
-            this.chkHolyCure.Size = new System.Drawing.Size(50, 15);
+            this.chkHolyCure.Size = new System.Drawing.Size(57, 19);
             this.chkHolyCure.TabIndex = 137;
             this.chkHolyCure.Text = "디각";
             this.chkHolyCure.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2911,12 +3004,12 @@
             // chkDePrava
             // 
             this.chkDePrava.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkDePrava.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkDePrava.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkDePrava.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkDePrava.Location = new System.Drawing.Point(62, 36);
+            this.chkDePrava.Location = new System.Drawing.Point(71, 45);
             this.chkDePrava.Margin = new System.Windows.Forms.Padding(1);
             this.chkDePrava.Name = "chkDePrava";
-            this.chkDePrava.Size = new System.Drawing.Size(50, 15);
+            this.chkDePrava.Size = new System.Drawing.Size(57, 19);
             this.chkDePrava.TabIndex = 136;
             this.chkDePrava.Text = "디프";
             this.chkDePrava.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2925,13 +3018,13 @@
             // chkDeRento
             // 
             this.chkDeRento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkDeRento.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkDeRento.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkDeRento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkDeRento.Location = new System.Drawing.Point(4, 87);
+            this.chkDeRento.Location = new System.Drawing.Point(5, 109);
             this.chkDeRento.Margin = new System.Windows.Forms.Padding(1);
             this.chkDeRento.Name = "chkDeRento";
             this.chkDeRento.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkDeRento.Size = new System.Drawing.Size(50, 15);
+            this.chkDeRento.Size = new System.Drawing.Size(57, 19);
             this.chkDeRento.TabIndex = 130;
             this.chkDeRento.Text = "디렌";
             this.chkDeRento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2940,10 +3033,11 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.groupBox2);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(415, 187);
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage6.Size = new System.Drawing.Size(475, 237);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "자보";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -2974,22 +3068,24 @@
             this.groupBox2.Controls.Add(this.chk콜라);
             this.groupBox2.Controls.Add(this.chk이모탈);
             this.groupBox2.Controls.Add(this.chk리플);
-            this.groupBox2.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox2.Location = new System.Drawing.Point(6, 6);
+            this.groupBox2.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox2.Location = new System.Drawing.Point(7, 8);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(401, 175);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Size = new System.Drawing.Size(458, 219);
             this.groupBox2.TabIndex = 136;
             this.groupBox2.TabStop = false;
             // 
             // chk변신
             // 
             this.chk변신.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk변신.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk변신.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk변신.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk변신.Location = new System.Drawing.Point(123, 85);
+            this.chk변신.Location = new System.Drawing.Point(141, 106);
             this.chk변신.Margin = new System.Windows.Forms.Padding(1);
             this.chk변신.Name = "chk변신";
-            this.chk변신.Size = new System.Drawing.Size(60, 15);
+            this.chk변신.Size = new System.Drawing.Size(69, 19);
             this.chk변신.TabIndex = 142;
             this.chk변신.Text = "변신";
             this.chk변신.UseVisualStyleBackColor = false;
@@ -2997,12 +3093,12 @@
             // chk힐
             // 
             this.chk힐.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk힐.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk힐.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk힐.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk힐.Location = new System.Drawing.Point(240, 19);
+            this.chk힐.Location = new System.Drawing.Point(274, 24);
             this.chk힐.Margin = new System.Windows.Forms.Padding(1);
             this.chk힐.Name = "chk힐";
-            this.chk힐.Size = new System.Drawing.Size(30, 15);
+            this.chk힐.Size = new System.Drawing.Size(34, 19);
             this.chk힐.TabIndex = 115;
             this.chk힐.Text = "힐";
             this.chk힐.UseVisualStyleBackColor = false;
@@ -3011,11 +3107,11 @@
             // 
             this.tbHeal.AutoSize = false;
             this.tbHeal.BackColor = System.Drawing.SystemColors.Control;
-            this.tbHeal.Location = new System.Drawing.Point(272, 19);
+            this.tbHeal.Location = new System.Drawing.Point(311, 24);
             this.tbHeal.Margin = new System.Windows.Forms.Padding(1);
             this.tbHeal.Maximum = 100;
             this.tbHeal.Name = "tbHeal";
-            this.tbHeal.Size = new System.Drawing.Size(80, 15);
+            this.tbHeal.Size = new System.Drawing.Size(91, 19);
             this.tbHeal.TabIndex = 117;
             this.tbHeal.TickFrequency = 10;
             this.tbHeal.Value = 90;
@@ -3024,12 +3120,12 @@
             // chk디각
             // 
             this.chk디각.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk디각.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk디각.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk디각.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk디각.Location = new System.Drawing.Point(178, 53);
+            this.chk디각.Location = new System.Drawing.Point(203, 66);
             this.chk디각.Margin = new System.Windows.Forms.Padding(1);
             this.chk디각.Name = "chk디각";
-            this.chk디각.Size = new System.Drawing.Size(60, 15);
+            this.chk디각.Size = new System.Drawing.Size(69, 19);
             this.chk디각.TabIndex = 142;
             this.chk디각.Text = "디각";
             this.chk디각.UseVisualStyleBackColor = false;
@@ -3037,12 +3133,12 @@
             // chk디데
             // 
             this.chk디데.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk디데.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk디데.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk디데.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk디데.Location = new System.Drawing.Point(178, 19);
+            this.chk디데.Location = new System.Drawing.Point(203, 24);
             this.chk디데.Margin = new System.Windows.Forms.Padding(1);
             this.chk디데.Name = "chk디데";
-            this.chk디데.Size = new System.Drawing.Size(60, 15);
+            this.chk디데.Size = new System.Drawing.Size(69, 19);
             this.chk디데.TabIndex = 138;
             this.chk디데.Text = "디데";
             this.chk디데.UseVisualStyleBackColor = false;
@@ -3050,12 +3146,12 @@
             // chk라이트닝무브
             // 
             this.chk라이트닝무브.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk라이트닝무브.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk라이트닝무브.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk라이트닝무브.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk라이트닝무브.Location = new System.Drawing.Point(61, 68);
+            this.chk라이트닝무브.Location = new System.Drawing.Point(70, 85);
             this.chk라이트닝무브.Margin = new System.Windows.Forms.Padding(1);
             this.chk라이트닝무브.Name = "chk라이트닝무브";
-            this.chk라이트닝무브.Size = new System.Drawing.Size(60, 15);
+            this.chk라이트닝무브.Size = new System.Drawing.Size(69, 19);
             this.chk라이트닝무브.TabIndex = 136;
             this.chk라이트닝무브.Text = "라이트닝무브";
             this.chk라이트닝무브.UseVisualStyleBackColor = false;
@@ -3063,11 +3159,11 @@
             // chk자동보호
             // 
             this.chk자동보호.AutoSize = true;
-            this.chk자동보호.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동보호.Location = new System.Drawing.Point(4, 0);
+            this.chk자동보호.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동보호.Location = new System.Drawing.Point(5, 0);
             this.chk자동보호.Margin = new System.Windows.Forms.Padding(1);
             this.chk자동보호.Name = "chk자동보호";
-            this.chk자동보호.Size = new System.Drawing.Size(68, 15);
+            this.chk자동보호.Size = new System.Drawing.Size(85, 18);
             this.chk자동보호.TabIndex = 1;
             this.chk자동보호.Text = "자보사용";
             this.chk자동보호.UseVisualStyleBackColor = true;
@@ -3076,12 +3172,12 @@
             // chk디프
             // 
             this.chk디프.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk디프.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk디프.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk디프.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk디프.Location = new System.Drawing.Point(178, 36);
+            this.chk디프.Location = new System.Drawing.Point(203, 45);
             this.chk디프.Margin = new System.Windows.Forms.Padding(1);
             this.chk디프.Name = "chk디프";
-            this.chk디프.Size = new System.Drawing.Size(60, 15);
+            this.chk디프.Size = new System.Drawing.Size(69, 19);
             this.chk디프.TabIndex = 139;
             this.chk디프.Text = "디프";
             this.chk디프.UseVisualStyleBackColor = false;
@@ -3089,12 +3185,12 @@
             // chk포트
             // 
             this.chk포트.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk포트.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk포트.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk포트.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk포트.Location = new System.Drawing.Point(4, 19);
+            this.chk포트.Location = new System.Drawing.Point(5, 24);
             this.chk포트.Margin = new System.Windows.Forms.Padding(1);
             this.chk포트.Name = "chk포트";
-            this.chk포트.Size = new System.Drawing.Size(50, 15);
+            this.chk포트.Size = new System.Drawing.Size(57, 19);
             this.chk포트.TabIndex = 120;
             this.chk포트.Text = "포트";
             this.chk포트.UseVisualStyleBackColor = false;
@@ -3102,12 +3198,12 @@
             // chk디바
             // 
             this.chk디바.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk디바.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk디바.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk디바.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk디바.Location = new System.Drawing.Point(61, 119);
+            this.chk디바.Location = new System.Drawing.Point(70, 149);
             this.chk디바.Margin = new System.Windows.Forms.Padding(1);
             this.chk디바.Name = "chk디바";
-            this.chk디바.Size = new System.Drawing.Size(60, 15);
+            this.chk디바.Size = new System.Drawing.Size(69, 19);
             this.chk디바.TabIndex = 140;
             this.chk디바.Text = "디바";
             this.chk디바.UseVisualStyleBackColor = false;
@@ -3115,12 +3211,12 @@
             // chk디렌
             // 
             this.chk디렌.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk디렌.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk디렌.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk디렌.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk디렌.Location = new System.Drawing.Point(61, 102);
+            this.chk디렌.Location = new System.Drawing.Point(70, 128);
             this.chk디렌.Margin = new System.Windows.Forms.Padding(1);
             this.chk디렌.Name = "chk디렌";
-            this.chk디렌.Size = new System.Drawing.Size(60, 15);
+            this.chk디렌.Size = new System.Drawing.Size(69, 19);
             this.chk디렌.TabIndex = 141;
             this.chk디렌.Text = "디렌";
             this.chk디렌.UseVisualStyleBackColor = false;
@@ -3128,12 +3224,12 @@
             // chk하이드
             // 
             this.chk하이드.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk하이드.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk하이드.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk하이드.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk하이드.Location = new System.Drawing.Point(61, 34);
+            this.chk하이드.Location = new System.Drawing.Point(70, 42);
             this.chk하이드.Margin = new System.Windows.Forms.Padding(1);
             this.chk하이드.Name = "chk하이드";
-            this.chk하이드.Size = new System.Drawing.Size(60, 15);
+            this.chk하이드.Size = new System.Drawing.Size(69, 19);
             this.chk하이드.TabIndex = 118;
             this.chk하이드.Text = "하이드";
             this.chk하이드.UseVisualStyleBackColor = false;
@@ -3141,12 +3237,12 @@
             // chk쿠랄툼
             // 
             this.chk쿠랄툼.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk쿠랄툼.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk쿠랄툼.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk쿠랄툼.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk쿠랄툼.Location = new System.Drawing.Point(61, 51);
+            this.chk쿠랄툼.Location = new System.Drawing.Point(70, 64);
             this.chk쿠랄툼.Margin = new System.Windows.Forms.Padding(1);
             this.chk쿠랄툼.Name = "chk쿠랄툼";
-            this.chk쿠랄툼.Size = new System.Drawing.Size(60, 15);
+            this.chk쿠랄툼.Size = new System.Drawing.Size(69, 19);
             this.chk쿠랄툼.TabIndex = 134;
             this.chk쿠랄툼.Text = "쿠랄툼";
             this.chk쿠랄툼.UseVisualStyleBackColor = false;
@@ -3154,12 +3250,12 @@
             // chk디베
             // 
             this.chk디베.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk디베.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk디베.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk디베.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk디베.Location = new System.Drawing.Point(123, 19);
+            this.chk디베.Location = new System.Drawing.Point(141, 24);
             this.chk디베.Margin = new System.Windows.Forms.Padding(1);
             this.chk디베.Name = "chk디베";
-            this.chk디베.Size = new System.Drawing.Size(60, 15);
+            this.chk디베.Size = new System.Drawing.Size(69, 19);
             this.chk디베.TabIndex = 137;
             this.chk디베.Text = "디베";
             this.chk디베.UseVisualStyleBackColor = false;
@@ -3167,12 +3263,12 @@
             // chk델리
             // 
             this.chk델리.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk델리.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk델리.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk델리.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk델리.Location = new System.Drawing.Point(4, 36);
+            this.chk델리.Location = new System.Drawing.Point(5, 45);
             this.chk델리.Margin = new System.Windows.Forms.Padding(1);
             this.chk델리.Name = "chk델리";
-            this.chk델리.Size = new System.Drawing.Size(50, 15);
+            this.chk델리.Size = new System.Drawing.Size(57, 19);
             this.chk델리.TabIndex = 119;
             this.chk델리.Text = "델리";
             this.chk델리.UseVisualStyleBackColor = false;
@@ -3180,12 +3276,12 @@
             // chk움
             // 
             this.chk움.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk움.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk움.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk움.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk움.Location = new System.Drawing.Point(123, 102);
+            this.chk움.Location = new System.Drawing.Point(141, 128);
             this.chk움.Margin = new System.Windows.Forms.Padding(1);
             this.chk움.Name = "chk움";
-            this.chk움.Size = new System.Drawing.Size(60, 15);
+            this.chk움.Size = new System.Drawing.Size(69, 19);
             this.chk움.TabIndex = 136;
             this.chk움.Text = "움";
             this.chk움.UseVisualStyleBackColor = false;
@@ -3193,12 +3289,12 @@
             // chk일루
             // 
             this.chk일루.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk일루.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk일루.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk일루.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk일루.Location = new System.Drawing.Point(123, 36);
+            this.chk일루.Location = new System.Drawing.Point(141, 45);
             this.chk일루.Margin = new System.Windows.Forms.Padding(1);
             this.chk일루.Name = "chk일루";
-            this.chk일루.Size = new System.Drawing.Size(60, 15);
+            this.chk일루.Size = new System.Drawing.Size(69, 19);
             this.chk일루.TabIndex = 136;
             this.chk일루.Text = "일루";
             this.chk일루.UseVisualStyleBackColor = false;
@@ -3206,12 +3302,12 @@
             // chk집중
             // 
             this.chk집중.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk집중.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk집중.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk집중.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk집중.Location = new System.Drawing.Point(61, 19);
+            this.chk집중.Location = new System.Drawing.Point(70, 24);
             this.chk집중.Margin = new System.Windows.Forms.Padding(1);
             this.chk집중.Name = "chk집중";
-            this.chk집중.Size = new System.Drawing.Size(60, 15);
+            this.chk집중.Size = new System.Drawing.Size(69, 19);
             this.chk집중.TabIndex = 121;
             this.chk집중.Text = "집중";
             this.chk집중.UseVisualStyleBackColor = false;
@@ -3219,12 +3315,12 @@
             // chk디나
             // 
             this.chk디나.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk디나.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk디나.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk디나.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk디나.Location = new System.Drawing.Point(4, 121);
+            this.chk디나.Location = new System.Drawing.Point(5, 151);
             this.chk디나.Margin = new System.Windows.Forms.Padding(1);
             this.chk디나.Name = "chk디나";
-            this.chk디나.Size = new System.Drawing.Size(60, 15);
+            this.chk디나.Size = new System.Drawing.Size(69, 19);
             this.chk디나.TabIndex = 135;
             this.chk디나.Text = "디나";
             this.chk디나.UseVisualStyleBackColor = false;
@@ -3232,12 +3328,12 @@
             // chk호르
             // 
             this.chk호르.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk호르.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk호르.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk호르.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk호르.Location = new System.Drawing.Point(4, 87);
+            this.chk호르.Location = new System.Drawing.Point(5, 109);
             this.chk호르.Margin = new System.Windows.Forms.Padding(1);
             this.chk호르.Name = "chk호르";
-            this.chk호르.Size = new System.Drawing.Size(50, 15);
+            this.chk호르.Size = new System.Drawing.Size(57, 19);
             this.chk호르.TabIndex = 113;
             this.chk호르.Text = "호르";
             this.chk호르.UseVisualStyleBackColor = false;
@@ -3245,12 +3341,12 @@
             // chk디소
             // 
             this.chk디소.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk디소.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk디소.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk디소.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk디소.Location = new System.Drawing.Point(4, 104);
+            this.chk디소.Location = new System.Drawing.Point(5, 130);
             this.chk디소.Margin = new System.Windows.Forms.Padding(1);
             this.chk디소.Name = "chk디소";
-            this.chk디소.Size = new System.Drawing.Size(60, 15);
+            this.chk디소.Size = new System.Drawing.Size(69, 19);
             this.chk디소.TabIndex = 134;
             this.chk디소.Text = "디소";
             this.chk디소.UseVisualStyleBackColor = false;
@@ -3258,12 +3354,12 @@
             // chk콜라
             // 
             this.chk콜라.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk콜라.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk콜라.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk콜라.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk콜라.Location = new System.Drawing.Point(61, 85);
+            this.chk콜라.Location = new System.Drawing.Point(70, 106);
             this.chk콜라.Margin = new System.Windows.Forms.Padding(1);
             this.chk콜라.Name = "chk콜라";
-            this.chk콜라.Size = new System.Drawing.Size(60, 15);
+            this.chk콜라.Size = new System.Drawing.Size(69, 19);
             this.chk콜라.TabIndex = 114;
             this.chk콜라.Text = "콜라";
             this.chk콜라.UseVisualStyleBackColor = false;
@@ -3271,12 +3367,12 @@
             // chk이모탈
             // 
             this.chk이모탈.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk이모탈.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk이모탈.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk이모탈.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk이모탈.Location = new System.Drawing.Point(4, 53);
+            this.chk이모탈.Location = new System.Drawing.Point(5, 66);
             this.chk이모탈.Margin = new System.Windows.Forms.Padding(1);
             this.chk이모탈.Name = "chk이모탈";
-            this.chk이모탈.Size = new System.Drawing.Size(60, 15);
+            this.chk이모탈.Size = new System.Drawing.Size(69, 19);
             this.chk이모탈.TabIndex = 112;
             this.chk이모탈.Text = "이모탈";
             this.chk이모탈.UseVisualStyleBackColor = false;
@@ -3284,12 +3380,12 @@
             // chk리플
             // 
             this.chk리플.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk리플.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk리플.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk리플.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk리플.Location = new System.Drawing.Point(4, 70);
+            this.chk리플.Location = new System.Drawing.Point(5, 88);
             this.chk리플.Margin = new System.Windows.Forms.Padding(1);
             this.chk리플.Name = "chk리플";
-            this.chk리플.Size = new System.Drawing.Size(50, 15);
+            this.chk리플.Size = new System.Drawing.Size(57, 19);
             this.chk리플.TabIndex = 116;
             this.chk리플.Text = "리플";
             this.chk리플.UseVisualStyleBackColor = false;
@@ -3298,10 +3394,11 @@
             // 
             this.tabPage8.Controls.Add(this.groupBox10);
             this.tabPage8.Controls.Add(this.groupBox9);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Location = new System.Drawing.Point(4, 25);
+            this.tabPage8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(415, 187);
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage8.Size = new System.Drawing.Size(475, 237);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "저주";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -3312,9 +3409,11 @@
             this.groupBox10.Controls.Add(this.trackBar4);
             this.groupBox10.Controls.Add(this.chk자동렌토);
             this.groupBox10.Controls.Add(this.chk무딜);
-            this.groupBox10.Location = new System.Drawing.Point(159, 6);
+            this.groupBox10.Location = new System.Drawing.Point(182, 8);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(248, 175);
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox10.Size = new System.Drawing.Size(283, 219);
             this.groupBox10.TabIndex = 143;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "세부설정";
@@ -3322,9 +3421,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 38);
+            this.label2.Location = new System.Drawing.Point(7, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 147;
             this.label2.Text = "인식범위";
             // 
@@ -3333,20 +3432,21 @@
             this.trackBar4.AutoSize = false;
             this.trackBar4.BackColor = System.Drawing.SystemColors.Control;
             this.trackBar4.LargeChange = 10;
-            this.trackBar4.Location = new System.Drawing.Point(80, 35);
+            this.trackBar4.Location = new System.Drawing.Point(91, 44);
+            this.trackBar4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.trackBar4.Name = "trackBar4";
-            this.trackBar4.Size = new System.Drawing.Size(80, 15);
+            this.trackBar4.Size = new System.Drawing.Size(91, 19);
             this.trackBar4.TabIndex = 146;
             this.trackBar4.Value = 10;
             // 
             // chk자동렌토
             // 
             this.chk자동렌토.AutoSize = true;
-            this.chk자동렌토.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동렌토.Location = new System.Drawing.Point(8, 66);
+            this.chk자동렌토.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동렌토.Location = new System.Drawing.Point(9, 82);
             this.chk자동렌토.Margin = new System.Windows.Forms.Padding(0);
             this.chk자동렌토.Name = "chk자동렌토";
-            this.chk자동렌토.Size = new System.Drawing.Size(109, 15);
+            this.chk자동렌토.Size = new System.Drawing.Size(139, 18);
             this.chk자동렌토.TabIndex = 141;
             this.chk자동렌토.Text = "자동렌토(꼬장용)";
             this.chk자동렌토.UseVisualStyleBackColor = true;
@@ -3354,10 +3454,11 @@
             // chk무딜
             // 
             this.chk무딜.AutoSize = true;
-            this.chk무딜.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk무딜.Location = new System.Drawing.Point(6, 20);
+            this.chk무딜.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk무딜.Location = new System.Drawing.Point(7, 25);
+            this.chk무딜.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk무딜.Name = "chk무딜";
-            this.chk무딜.Size = new System.Drawing.Size(46, 15);
+            this.chk무딜.Size = new System.Drawing.Size(57, 18);
             this.chk무딜.TabIndex = 136;
             this.chk무딜.Text = "무딜";
             this.chk무딜.UseVisualStyleBackColor = true;
@@ -3374,19 +3475,22 @@
             this.groupBox9.Controls.Add(this.chk자동소루);
             this.groupBox9.Controls.Add(this.chkSeo);
             this.groupBox9.Controls.Add(this.chk기공콘푸);
-            this.groupBox9.Location = new System.Drawing.Point(6, 6);
+            this.groupBox9.Location = new System.Drawing.Point(7, 8);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(147, 175);
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox9.Size = new System.Drawing.Size(168, 219);
             this.groupBox9.TabIndex = 142;
             this.groupBox9.TabStop = false;
             // 
             // chk저주
             // 
             this.chk저주.AutoSize = true;
-            this.chk저주.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk저주.Location = new System.Drawing.Point(6, 0);
+            this.chk저주.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk저주.Location = new System.Drawing.Point(7, 0);
+            this.chk저주.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk저주.Name = "chk저주";
-            this.chk저주.Size = new System.Drawing.Size(68, 15);
+            this.chk저주.Size = new System.Drawing.Size(85, 18);
             this.chk저주.TabIndex = 142;
             this.chk저주.Text = "저주사용";
             this.chk저주.UseVisualStyleBackColor = true;
@@ -3395,11 +3499,11 @@
             // chk프라
             // 
             this.chk프라.AutoSize = true;
-            this.chk프라.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk프라.Location = new System.Drawing.Point(6, 21);
+            this.chk프라.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk프라.Location = new System.Drawing.Point(7, 26);
             this.chk프라.Margin = new System.Windows.Forms.Padding(0);
             this.chk프라.Name = "chk프라";
-            this.chk프라.Size = new System.Drawing.Size(68, 15);
+            this.chk프라.Size = new System.Drawing.Size(85, 18);
             this.chk프라.TabIndex = 136;
             this.chk프라.Text = "자동프라";
             this.chk프라.UseVisualStyleBackColor = true;
@@ -3407,11 +3511,11 @@
             // chk자동바르도
             // 
             this.chk자동바르도.AutoSize = true;
-            this.chk자동바르도.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동바르도.Location = new System.Drawing.Point(6, 51);
+            this.chk자동바르도.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동바르도.Location = new System.Drawing.Point(7, 64);
             this.chk자동바르도.Margin = new System.Windows.Forms.Padding(0);
             this.chk자동바르도.Name = "chk자동바르도";
-            this.chk자동바르도.Size = new System.Drawing.Size(68, 15);
+            this.chk자동바르도.Size = new System.Drawing.Size(85, 18);
             this.chk자동바르도.TabIndex = 141;
             this.chk자동바르도.Text = "자동발도";
             this.chk자동바르도.UseVisualStyleBackColor = true;
@@ -3419,11 +3523,11 @@
             // chk리베
             // 
             this.chk리베.AutoSize = true;
-            this.chk리베.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk리베.Location = new System.Drawing.Point(6, 111);
+            this.chk리베.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk리베.Location = new System.Drawing.Point(7, 139);
             this.chk리베.Margin = new System.Windows.Forms.Padding(0);
             this.chk리베.Name = "chk리베";
-            this.chk리베.Size = new System.Drawing.Size(68, 15);
+            this.chk리베.Size = new System.Drawing.Size(85, 18);
             this.chk리베.TabIndex = 139;
             this.chk리베.Text = "자동리베";
             this.chk리베.UseVisualStyleBackColor = true;
@@ -3431,11 +3535,11 @@
             // chk자동데프
             // 
             this.chk자동데프.AutoSize = true;
-            this.chk자동데프.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동데프.Location = new System.Drawing.Point(6, 36);
+            this.chk자동데프.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동데프.Location = new System.Drawing.Point(7, 45);
             this.chk자동데프.Margin = new System.Windows.Forms.Padding(0);
             this.chk자동데프.Name = "chk자동데프";
-            this.chk자동데프.Size = new System.Drawing.Size(68, 15);
+            this.chk자동데프.Size = new System.Drawing.Size(85, 18);
             this.chk자동데프.TabIndex = 140;
             this.chk자동데프.Text = "자동데프";
             this.chk자동데프.UseVisualStyleBackColor = true;
@@ -3443,11 +3547,11 @@
             // chk자동베노미
             // 
             this.chk자동베노미.AutoSize = true;
-            this.chk자동베노미.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동베노미.Location = new System.Drawing.Point(6, 81);
+            this.chk자동베노미.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동베노미.Location = new System.Drawing.Point(7, 101);
             this.chk자동베노미.Margin = new System.Windows.Forms.Padding(0);
             this.chk자동베노미.Name = "chk자동베노미";
-            this.chk자동베노미.Size = new System.Drawing.Size(79, 15);
+            this.chk자동베노미.Size = new System.Drawing.Size(99, 18);
             this.chk자동베노미.TabIndex = 137;
             this.chk자동베노미.Text = "자동베노미";
             this.chk자동베노미.UseVisualStyleBackColor = true;
@@ -3455,11 +3559,11 @@
             // chk나르
             // 
             this.chk나르.AutoSize = true;
-            this.chk나르.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk나르.Location = new System.Drawing.Point(6, 66);
+            this.chk나르.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk나르.Location = new System.Drawing.Point(7, 82);
             this.chk나르.Margin = new System.Windows.Forms.Padding(0);
             this.chk나르.Name = "chk나르";
-            this.chk나르.Size = new System.Drawing.Size(68, 15);
+            this.chk나르.Size = new System.Drawing.Size(85, 18);
             this.chk나르.TabIndex = 137;
             this.chk나르.Text = "자동나르";
             this.chk나르.UseVisualStyleBackColor = true;
@@ -3467,33 +3571,33 @@
             // chk자동소루
             // 
             this.chk자동소루.AutoSize = true;
-            this.chk자동소루.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk자동소루.Location = new System.Drawing.Point(6, 96);
+            this.chk자동소루.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk자동소루.Location = new System.Drawing.Point(7, 120);
             this.chk자동소루.Margin = new System.Windows.Forms.Padding(0);
             this.chk자동소루.Name = "chk자동소루";
-            this.chk자동소루.Size = new System.Drawing.Size(68, 15);
+            this.chk자동소루.Size = new System.Drawing.Size(85, 18);
             this.chk자동소루.TabIndex = 138;
             this.chk자동소루.Text = "자동소루";
             this.chk자동소루.UseVisualStyleBackColor = true;
             // 
             // chkSeo
             // 
-            this.chkSeo.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chkSeo.Location = new System.Drawing.Point(6, 126);
+            this.chkSeo.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkSeo.Location = new System.Drawing.Point(7, 158);
             this.chkSeo.Margin = new System.Windows.Forms.Padding(0);
             this.chkSeo.Name = "chkSeo";
-            this.chkSeo.Size = new System.Drawing.Size(68, 15);
+            this.chkSeo.Size = new System.Drawing.Size(78, 19);
             this.chkSeo.TabIndex = 139;
             this.chkSeo.Text = "자동세오";
             this.chkSeo.UseVisualStyleBackColor = true;
             // 
             // chk기공콘푸
             // 
-            this.chk기공콘푸.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk기공콘푸.Location = new System.Drawing.Point(6, 141);
+            this.chk기공콘푸.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk기공콘푸.Location = new System.Drawing.Point(7, 176);
             this.chk기공콘푸.Margin = new System.Windows.Forms.Padding(0);
             this.chk기공콘푸.Name = "chk기공콘푸";
-            this.chk기공콘푸.Size = new System.Drawing.Size(68, 15);
+            this.chk기공콘푸.Size = new System.Drawing.Size(78, 19);
             this.chk기공콘푸.TabIndex = 139;
             this.chk기공콘푸.Text = "기공콘푸";
             this.chk기공콘푸.UseVisualStyleBackColor = true;
@@ -3508,10 +3612,11 @@
             this.tabPage3.Controls.Add(this.chkPoint);
             this.tabPage3.Controls.Add(this.chk밀신경팔체);
             this.tabPage3.Controls.Add(this.chk밀신경팔마);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(415, 187);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage3.Size = new System.Drawing.Size(475, 237);
             this.tabPage3.TabIndex = 8;
             this.tabPage3.Text = "밀신";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -3519,12 +3624,12 @@
             // chkDEX
             // 
             this.chkDEX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkDEX.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkDEX.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkDEX.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkDEX.Location = new System.Drawing.Point(24, 161);
+            this.chkDEX.Location = new System.Drawing.Point(27, 201);
             this.chkDEX.Margin = new System.Windows.Forms.Padding(1);
             this.chkDEX.Name = "chkDEX";
-            this.chkDEX.Size = new System.Drawing.Size(69, 16);
+            this.chkDEX.Size = new System.Drawing.Size(79, 20);
             this.chkDEX.TabIndex = 1004;
             this.chkDEX.Text = "DEX";
             this.chkDEX.UseVisualStyleBackColor = false;
@@ -3532,12 +3637,12 @@
             // chkWIS
             // 
             this.chkWIS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkWIS.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkWIS.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkWIS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkWIS.Location = new System.Drawing.Point(24, 125);
+            this.chkWIS.Location = new System.Drawing.Point(27, 156);
             this.chkWIS.Margin = new System.Windows.Forms.Padding(1);
             this.chkWIS.Name = "chkWIS";
-            this.chkWIS.Size = new System.Drawing.Size(69, 16);
+            this.chkWIS.Size = new System.Drawing.Size(79, 20);
             this.chkWIS.TabIndex = 1003;
             this.chkWIS.Text = "WIS";
             this.chkWIS.UseVisualStyleBackColor = false;
@@ -3545,12 +3650,12 @@
             // chkINT
             // 
             this.chkINT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkINT.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkINT.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkINT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkINT.Location = new System.Drawing.Point(24, 143);
+            this.chkINT.Location = new System.Drawing.Point(27, 179);
             this.chkINT.Margin = new System.Windows.Forms.Padding(1);
             this.chkINT.Name = "chkINT";
-            this.chkINT.Size = new System.Drawing.Size(69, 16);
+            this.chkINT.Size = new System.Drawing.Size(79, 20);
             this.chkINT.TabIndex = 1002;
             this.chkINT.Text = "INT";
             this.chkINT.UseVisualStyleBackColor = false;
@@ -3558,12 +3663,12 @@
             // chkCON
             // 
             this.chkCON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkCON.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkCON.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkCON.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkCON.Location = new System.Drawing.Point(24, 107);
+            this.chkCON.Location = new System.Drawing.Point(27, 134);
             this.chkCON.Margin = new System.Windows.Forms.Padding(1);
             this.chkCON.Name = "chkCON";
-            this.chkCON.Size = new System.Drawing.Size(69, 16);
+            this.chkCON.Size = new System.Drawing.Size(79, 20);
             this.chkCON.TabIndex = 1001;
             this.chkCON.Text = "CON";
             this.chkCON.UseVisualStyleBackColor = false;
@@ -3571,12 +3676,12 @@
             // chkSTR
             // 
             this.chkSTR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkSTR.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkSTR.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkSTR.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkSTR.Location = new System.Drawing.Point(24, 89);
+            this.chkSTR.Location = new System.Drawing.Point(27, 111);
             this.chkSTR.Margin = new System.Windows.Forms.Padding(1);
             this.chkSTR.Name = "chkSTR";
-            this.chkSTR.Size = new System.Drawing.Size(69, 16);
+            this.chkSTR.Size = new System.Drawing.Size(79, 20);
             this.chkSTR.TabIndex = 1000;
             this.chkSTR.Text = "STR";
             this.chkSTR.UseVisualStyleBackColor = false;
@@ -3584,12 +3689,12 @@
             // chkPoint
             // 
             this.chkPoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chkPoint.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chkPoint.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chkPoint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkPoint.Location = new System.Drawing.Point(5, 71);
+            this.chkPoint.Location = new System.Drawing.Point(6, 89);
             this.chkPoint.Margin = new System.Windows.Forms.Padding(1);
             this.chkPoint.Name = "chkPoint";
-            this.chkPoint.Size = new System.Drawing.Size(69, 16);
+            this.chkPoint.Size = new System.Drawing.Size(79, 20);
             this.chkPoint.TabIndex = 999;
             this.chkPoint.Text = "포인트";
             this.chkPoint.UseVisualStyleBackColor = false;
@@ -3597,12 +3702,12 @@
             // chk밀신경팔체
             // 
             this.chk밀신경팔체.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk밀신경팔체.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk밀신경팔체.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk밀신경팔체.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk밀신경팔체.Location = new System.Drawing.Point(5, 4);
+            this.chk밀신경팔체.Location = new System.Drawing.Point(6, 5);
             this.chk밀신경팔체.Margin = new System.Windows.Forms.Padding(1);
             this.chk밀신경팔체.Name = "chk밀신경팔체";
-            this.chk밀신경팔체.Size = new System.Drawing.Size(69, 16);
+            this.chk밀신경팔체.Size = new System.Drawing.Size(79, 20);
             this.chk밀신경팔체.TabIndex = 997;
             this.chk밀신경팔체.Text = "밀신경체";
             this.chk밀신경팔체.UseVisualStyleBackColor = false;
@@ -3611,12 +3716,12 @@
             // chk밀신경팔마
             // 
             this.chk밀신경팔마.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.chk밀신경팔마.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk밀신경팔마.Font = new System.Drawing.Font("Dotum", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chk밀신경팔마.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chk밀신경팔마.Location = new System.Drawing.Point(5, 21);
+            this.chk밀신경팔마.Location = new System.Drawing.Point(6, 26);
             this.chk밀신경팔마.Margin = new System.Windows.Forms.Padding(1);
             this.chk밀신경팔마.Name = "chk밀신경팔마";
-            this.chk밀신경팔마.Size = new System.Drawing.Size(69, 16);
+            this.chk밀신경팔마.Size = new System.Drawing.Size(79, 20);
             this.chk밀신경팔마.TabIndex = 998;
             this.chk밀신경팔마.Text = "밀신경마";
             this.chk밀신경팔마.UseVisualStyleBackColor = false;
@@ -3624,6 +3729,10 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.chk밀트4);
+            this.tabPage7.Controls.Add(this.chk밀트3);
+            this.tabPage7.Controls.Add(this.chk밀트2);
+            this.tabPage7.Controls.Add(this.chk밀트1);
             this.tabPage7.Controls.Add(this.chk맵이동);
             this.tabPage7.Controls.Add(this.check갬유);
             this.tabPage7.Controls.Add(this.check블랙);
@@ -3632,23 +3741,51 @@
             this.tabPage7.Controls.Add(this.field층);
             this.tabPage7.Controls.Add(this.tb층);
             this.tabPage7.Controls.Add(this.check브론);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(415, 187);
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage7.Size = new System.Drawing.Size(475, 237);
             this.tabPage7.TabIndex = 9;
             this.tabPage7.Text = "자동이동";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // chk밀트1
+            // 
+            this.chk밀트1.AutoSize = true;
+            this.chk밀트1.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk밀트1.Location = new System.Drawing.Point(165, 59);
+            this.chk밀트1.Margin = new System.Windows.Forms.Padding(1);
+            this.chk밀트1.Name = "chk밀트1";
+            this.chk밀트1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chk밀트1.Size = new System.Drawing.Size(65, 18);
+            this.chk밀트1.TabIndex = 188;
+            this.chk밀트1.Text = "밀트1";
+            this.chk밀트1.UseVisualStyleBackColor = true;
+            this.chk밀트1.CheckedChanged += new System.EventHandler(this.chk밀트1_CheckedChanged);
+            // 
+            // chk맵이동
+            // 
+            this.chk맵이동.AutoSize = true;
+            this.chk맵이동.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk맵이동.Location = new System.Drawing.Point(21, 18);
+            this.chk맵이동.Margin = new System.Windows.Forms.Padding(1);
+            this.chk맵이동.Name = "chk맵이동";
+            this.chk맵이동.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chk맵이동.Size = new System.Drawing.Size(71, 18);
+            this.chk맵이동.TabIndex = 187;
+            this.chk맵이동.Text = "맵이동";
+            this.chk맵이동.UseVisualStyleBackColor = true;
+            // 
             // check갬유
             // 
             this.check갬유.AutoSize = true;
-            this.check갬유.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.check갬유.Location = new System.Drawing.Point(82, 47);
+            this.check갬유.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.check갬유.Location = new System.Drawing.Point(94, 59);
             this.check갬유.Margin = new System.Windows.Forms.Padding(1);
             this.check갬유.Name = "check갬유";
             this.check갬유.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.check갬유.Size = new System.Drawing.Size(46, 15);
+            this.check갬유.Size = new System.Drawing.Size(57, 18);
             this.check갬유.TabIndex = 186;
             this.check갬유.Text = "갬유";
             this.check갬유.UseVisualStyleBackColor = true;
@@ -3656,12 +3793,12 @@
             // check블랙
             // 
             this.check블랙.AutoSize = true;
-            this.check블랙.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.check블랙.Location = new System.Drawing.Point(18, 98);
+            this.check블랙.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.check블랙.Location = new System.Drawing.Point(21, 122);
             this.check블랙.Margin = new System.Windows.Forms.Padding(1);
             this.check블랙.Name = "check블랙";
             this.check블랙.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.check블랙.Size = new System.Drawing.Size(46, 15);
+            this.check블랙.Size = new System.Drawing.Size(57, 18);
             this.check블랙.TabIndex = 185;
             this.check블랙.Text = "블랙";
             this.check블랙.UseVisualStyleBackColor = true;
@@ -3669,12 +3806,12 @@
             // check레드
             // 
             this.check레드.AutoSize = true;
-            this.check레드.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.check레드.Location = new System.Drawing.Point(18, 81);
+            this.check레드.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.check레드.Location = new System.Drawing.Point(21, 101);
             this.check레드.Margin = new System.Windows.Forms.Padding(1);
             this.check레드.Name = "check레드";
             this.check레드.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.check레드.Size = new System.Drawing.Size(46, 15);
+            this.check레드.Size = new System.Drawing.Size(57, 18);
             this.check레드.TabIndex = 184;
             this.check레드.Text = "레드";
             this.check레드.UseVisualStyleBackColor = true;
@@ -3682,12 +3819,12 @@
             // check블루
             // 
             this.check블루.AutoSize = true;
-            this.check블루.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.check블루.Location = new System.Drawing.Point(18, 64);
+            this.check블루.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.check블루.Location = new System.Drawing.Point(21, 80);
             this.check블루.Margin = new System.Windows.Forms.Padding(1);
             this.check블루.Name = "check블루";
             this.check블루.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.check블루.Size = new System.Drawing.Size(46, 15);
+            this.check블루.Size = new System.Drawing.Size(57, 18);
             this.check블루.TabIndex = 183;
             this.check블루.Text = "블루";
             this.check블루.UseVisualStyleBackColor = true;
@@ -3695,57 +3832,87 @@
             // field층
             // 
             this.field층.AutoSize = true;
-            this.field층.Location = new System.Drawing.Point(80, 15);
+            this.field층.Location = new System.Drawing.Point(91, 19);
             this.field층.Name = "field층";
-            this.field층.Size = new System.Drawing.Size(25, 12);
+            this.field층.Size = new System.Drawing.Size(32, 15);
             this.field층.TabIndex = 182;
             this.field층.Text = "층 :";
             // 
             // tb층
             // 
-            this.tb층.Location = new System.Drawing.Point(111, 10);
+            this.tb층.Location = new System.Drawing.Point(127, 12);
+            this.tb층.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tb층.Name = "tb층";
-            this.tb층.Size = new System.Drawing.Size(43, 21);
+            this.tb층.Size = new System.Drawing.Size(49, 25);
             this.tb층.TabIndex = 181;
             // 
-            // chk브론
+            // check브론
             // 
             this.check브론.AutoSize = true;
-            this.check브론.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.check브론.Location = new System.Drawing.Point(18, 47);
+            this.check브론.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.check브론.Location = new System.Drawing.Point(21, 59);
             this.check브론.Margin = new System.Windows.Forms.Padding(1);
             this.check브론.Name = "check브론";
             this.check브론.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.check브론.Size = new System.Drawing.Size(46, 15);
+            this.check브론.Size = new System.Drawing.Size(57, 18);
             this.check브론.TabIndex = 180;
             this.check브론.Text = "브론";
             this.check브론.UseVisualStyleBackColor = true;
             // 
-            // chk맵이동
+            // chk밀트2
             // 
-            this.chk맵이동.AutoSize = true;
-            this.chk맵이동.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.chk맵이동.Location = new System.Drawing.Point(18, 14);
-            this.chk맵이동.Margin = new System.Windows.Forms.Padding(1);
-            this.chk맵이동.Name = "chk맵이동";
-            this.chk맵이동.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk맵이동.Size = new System.Drawing.Size(57, 15);
-            this.chk맵이동.TabIndex = 187;
-            this.chk맵이동.Text = "맵이동";
-            this.chk맵이동.UseVisualStyleBackColor = true;
-            this.chk맵이동.CheckedChanged += chk자동이동_CheckedChanged;
+            this.chk밀트2.AutoSize = true;
+            this.chk밀트2.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk밀트2.Location = new System.Drawing.Point(165, 79);
+            this.chk밀트2.Margin = new System.Windows.Forms.Padding(1);
+            this.chk밀트2.Name = "chk밀트2";
+            this.chk밀트2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chk밀트2.Size = new System.Drawing.Size(65, 18);
+            this.chk밀트2.TabIndex = 189;
+            this.chk밀트2.Text = "밀트2";
+            this.chk밀트2.UseVisualStyleBackColor = true;
+            this.chk밀트2.CheckedChanged += new System.EventHandler(this.chk밀트2_CheckedChanged);
+            // 
+            // chk밀트3
+            // 
+            this.chk밀트3.AutoSize = true;
+            this.chk밀트3.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk밀트3.Location = new System.Drawing.Point(165, 101);
+            this.chk밀트3.Margin = new System.Windows.Forms.Padding(1);
+            this.chk밀트3.Name = "chk밀트3";
+            this.chk밀트3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chk밀트3.Size = new System.Drawing.Size(65, 18);
+            this.chk밀트3.TabIndex = 190;
+            this.chk밀트3.Text = "밀트3";
+            this.chk밀트3.UseVisualStyleBackColor = true;
+            this.chk밀트3.CheckedChanged += new System.EventHandler(this.chk밀트3_CheckedChanged);
+            // 
+            // chk밀트4
+            // 
+            this.chk밀트4.AutoSize = true;
+            this.chk밀트4.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.chk밀트4.Location = new System.Drawing.Point(165, 122);
+            this.chk밀트4.Margin = new System.Windows.Forms.Padding(1);
+            this.chk밀트4.Name = "chk밀트4";
+            this.chk밀트4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chk밀트4.Size = new System.Drawing.Size(65, 18);
+            this.chk밀트4.TabIndex = 191;
+            this.chk밀트4.Text = "밀트4";
+            this.chk밀트4.UseVisualStyleBackColor = true;
+            this.chk밀트4.CheckedChanged += new System.EventHandler(this.chk밀트4_CheckedChanged);
             // 
             // FormPatron
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(424, 261);
+            this.ClientSize = new System.Drawing.Size(485, 326);
             this.ControlBox = false;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Location = new System.Drawing.Point(3, 0);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormPatron";
