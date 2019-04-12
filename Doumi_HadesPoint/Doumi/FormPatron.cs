@@ -40,6 +40,7 @@
         private BuffControl _buffControl;
         private War _war;
         private AutoExpSell _autoExpSell;
+        public MilessTresure _milessTresure;
         public bool _chatMoudleFlag;
         public bool _networkExplorerModuleFlag;
         public bool _areaMoudleFlag;
@@ -836,42 +837,42 @@
 
         private void chk밀트1_CheckedChanged(object sender, EventArgs e)
         {
-            if ((this.Patron.Form != null) && this.chk자그.Checked)
+            if ((this.Patron.Form != null) && this.chk밀트1.Checked)
             {
-                this._autoGroup = new AutoGroup(this.Patron);
-                this._autoGroup.Start();
+                this._milessTresure = new MilessTresure(this.Patron);
+                this._milessTresure.Start();
             }
-            if ((this.Patron.Form != null) && !this.chk자그.Checked)
+            if ((this.Patron.Form != null) && !this.chk밀트1.Checked)
             {
-                this._autoGroup.Abort();
-                this._autoGroup = null;
+                this._milessTresure.Abort();
+                this._milessTresure = null;
             }
         }
         private void chk밀트2_CheckedChanged(object sender, EventArgs e)
         {
-            if ((this.Patron.Form != null) && this.chk자그.Checked)
+            if ((this.Patron.Form != null) && this.chk밀트2.Checked)
             {
-                this._autoGroup = new AutoGroup(this.Patron);
-                this._autoGroup.Start();
+                this._milessTresure = new MilessTresure(this.Patron);
+                this._milessTresure.Start();
             }
-            if ((this.Patron.Form != null) && !this.chk자그.Checked)
+            if ((this.Patron.Form != null) && !this.chk밀트2.Checked)
             {
-                this._autoGroup.Abort();
-                this._autoGroup = null;
+                this._milessTresure.Abort();
+                this._milessTresure = null;
             }
         }
 
         private void chk밀트3_CheckedChanged(object sender, EventArgs e)
         {
-            if ((this.Patron.Form != null) && this.chk자그.Checked)
+            if ((this.Patron.Form != null) && this.chk밀트3.Checked)
             {
-                this._autoGroup = new AutoGroup(this.Patron);
-                this._autoGroup.Start();
+                this._milessTresure = new MilessTresure(this.Patron);
+                this._milessTresure.Start();
             }
-            if ((this.Patron.Form != null) && !this.chk밀트4.Checked)
+            if ((this.Patron.Form != null) && !this.chk밀트3.Checked)
             {
-                this._autoGroup.Abort();
-                this._autoGroup = null;
+                this._milessTresure.Abort();
+                this._milessTresure = null;
             }
         }
 
@@ -879,13 +880,13 @@
         {
             if ((this.Patron.Form != null) && this.chk밀트4.Checked)
             {
-                this._autoGroup = new AutoGroup(this.Patron);
-                this._autoGroup.Start();
+                this._milessTresure = new MilessTresure(this.Patron);
+                this._milessTresure.Start();
             }
             if ((this.Patron.Form != null) && !this.chk밀트4.Checked)
             {
-                this._autoGroup.Abort();
-                this._autoGroup = null;
+                this._milessTresure.Abort();
+                this._milessTresure = null;
             }
         }
 
@@ -3776,6 +3777,7 @@
             this.chk맵이동.TabIndex = 187;
             this.chk맵이동.Text = "맵이동";
             this.chk맵이동.UseVisualStyleBackColor = true;
+            this.chk맵이동.CheckedChanged += new System.EventHandler(this.chk자동이동_CheckedChanged);
             // 
             // check갬유
             // 

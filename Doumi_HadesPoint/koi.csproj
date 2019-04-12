@@ -49,6 +49,7 @@
     <Compile Include="Doumi\Bot\Hunt_Monk.cs" />
     <Compile Include="Doumi\Bot\Hunt_Rogue.cs" />
     <Compile Include="Doumi\Bot\Hunt_Warrior.cs" />
+    <Compile Include="Doumi\Bot\MilessTreasure.cs" />
     <Compile Include="Doumi\Bot\SuspiciousMushroom.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="InternetTime\SNTPClient.cs" />

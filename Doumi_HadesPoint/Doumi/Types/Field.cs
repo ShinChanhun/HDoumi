@@ -320,6 +320,7 @@
         }
 
         public NexonMapFile.Tile this[int x, int y] =>
+            
             this.Area[(y * this.Cols) + x];
 
         public bool Loaded =>
