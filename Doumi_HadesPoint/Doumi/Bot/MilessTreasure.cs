@@ -23,11 +23,17 @@
         public int[,] m151 = { { 8, 8 }, { 4, 18 }, { 8, 29 }, { 17, 25 }, { 17, 17 }, { 16, 8 }, { 27, 8 }, { 24, 21 }, { 25, 33 }, { 8, 44 }, { 21, 44 }, { 33, 39 }, { 44, 38 }, { 42, 27 }, { 42, 16 }, { 43, 5 } };
         public int[,] m161 = { { 3, 41 }, { 10, 41 }, { 25, 41 }, { 40, 41 }, { 40, 25 }, { 25, 25 }, { 10, 25 }, { 10, 12 }, { 22, 12 }, { 34, 12 }, { 43, 7 }, { 10, 4 }, { 22, 4 }, { 34, 4 }, { 43, 7 } };
 
-        public int[,] m132 = { { 6, 23 }, { 8, 31 }, { 6, 44 }, { 15, 39 }, { 26, 42 }, { 16, 28 }, { 19, 21 }, { 29, 22 }, { 36, 32 }, { 41, 40 }, { 42, 29 }, { 40, 21 }, { 33, 11 }, { 44, 8 }, { 35, 4 }, { 25, 8 }, { 16, 5 }, { 36, 26 }, { 14, 41 }, { 7, 9 } , { 33, 11 }, { 24, 31 } };
+        public int[,] m132 = { { 6, 23 }, { 8, 31 }, { 6, 44 }, { 15, 39 }, { 26, 42 }, { 16, 28 }, { 19, 21 }, { 29, 22 }, { 36, 32 }, { 41, 40 }, { 42, 29 }, { 40, 21 }, { 33, 11 }, { 44, 8 }, { 35, 4 }, { 25, 8 }, { 16, 5 }, { 36, 26 }, { 14, 41 }, { 7, 9 }, { 33, 11 }, { 24, 31 }, { 13, 47 } };
         public int[,] m142 = { { 43, 7 }, { 34, 6 }, { 32, 15 }, { 22, 17 }, { 14, 17 }, { 22, 5 }, { 14, 5 }, { 10, 6 }, { 13, 24 }, { 21, 26 }, { 28, 28 }, { 39, 32 }, { 43, 43 }, { 28, 42 }, { 15, 43 }, { 3, 42 }, { 6, 29 }, { 12, 28 } };
         public int[,] m152 = { { 41, 6 }, { 41, 13 }, { 41, 19 }, { 41, 26 }, { 40, 33 }, { 41, 42 }, { 28, 19 }, { 18, 19 }, { 26, 7 }, { 18, 8 }, { 20, 31 }, { 26, 34 }, { 24, 42 }, { 16, 42 }, { 16, 33 }, { 6, 42 }, { 6, 34 }, { 6, 26 }, { 6, 20 }, { 6, 12 }, { 6, 5 } };
         public int[,] m153 = { { 17, 3 }, { 20, 9 }, { 24, 13 }, { 27, 19 }, { 27, 25 }, { 31, 31 }, { 38, 32 }, { 44, 31 }, { 40, 23 }, { 42, 16 }, { 41, 10 }, { 41, 3 }, { 44, 43 }, { 34, 42 }, { 25, 41 }, { 17, 41 }, { 10, 40 }, { 4, 41 }, { 21, 30 }, { 12, 29 }, { 8, 29 }, { 6, 23 }, { 5, 16 } };
         public int[,] m162 = { { 38, 45 }, { 31, 45 }, { 24, 45 }, { 16, 45 }, { 10, 45 }, { 3, 43 }, { 3, 34 }, { 16, 32 }, { 3, 25 }, { 3, 15 }, { 15, 14 }, { 3, 4 }, { 12, 3 }, { 20, 3 }, { 28, 3 }, { 36, 3 }, { 44, 3 }, { 46, 9 }, { 34, 15 }, { 45, 17 }, { 45, 24 }, { 45, 30 }, { 33, 33 }, { 45, 37 }, { 43, 44 } };
+
+        public int[,] m143 = { { 5, 42 }, { 7, 34 }, { 10, 27 }, { 14, 21 }, { 13, 11 }, { 5, 6 }, { 13, 4 }, { 19, 5 }, { 19, 18 }, { 26, 19 }, { 33, 18 }, { 32, 8 }, { 39, 4 }, { 29, 21 }, { 27, 29 }, { 25, 36 }, { 17, 35 }, { 16, 43 }, { 28, 44 }, { 33, 39 }, { 33, 29 }, { 41, 27 }, { 40, 38 }, { 43, 42 }, { 45, 34 } };
+        public int[,] m154 = { { 7, 23 }, { 6, 31 }, { 10, 35 }, { 6, 42 }, { 14, 42 }, { 21, 43 }, { 28, 42 }, { 28, 33 }, { 24, 25 }, { 32, 24 }, { 35, 29 }, { 40, 32 }, { 40, 40 }, { 44, 43 }, { 44, 32 }, { 43, 22 }, { 43, 7 }, { 34, 8 }, { 24, 8 }, { 11, 7 }, { 4, 9 } };
+        public int[,] m163 = { { 42, 33 }, { 43, 25 }, { 43, 16 }, { 42, 6 }, { 32, 5 }, { 34, 13 }, { 32, 20 }, { 25, 16 }, { 19, 16 }, { 19, 6 }, { 10, 5 }, { 13, 15 }, { 12, 24 }, { 9, 31 }, { 4, 41 }, { 13, 42 }, { 15, 32 }, { 23, 33 }, { 30, 31 }, { 31, 42 }, { 38, 33 } };
+        public int[,] m164 = { { 41, 4 }, { 33, 8 }, { 32, 18 }, { 23, 18 }, { 12, 12 }, { 19, 6 }, { 8, 6 }, { 12, 16 }, { 11, 26 }, { 7, 32 }, { 5, 40 }, { 13, 27 }, { 21, 25 }, { 27, 27 }, { 27, 35 }, { 28, 42 }, { 16, 42 }, { 16, 34 }, { 24, 33 }, { 36, 28 }, { 43, 43 }, { 44, 34 }, { 38, 27 }, { 35, 18 }, { 34, 8 } };
+
 
         public string[] mName = { "13-1", "14-1", "15-1", "16-1" };
 
@@ -78,7 +84,7 @@
 
             while ((this.Patron != null) && this._flag)
             {
-                Thread.Sleep(300);
+                Thread.Sleep(400);
 
                 //Patron.Refresh();
 
@@ -134,11 +140,14 @@
 
             Patron.mTeleport.WaitOne();
 
-            if(Patron.Name == "튼밀하나")
+            if (Patron.Name == "튼밀하나")
                 Mil_1();
 
-            if(Patron.Name =="튼밀둘")
+            if (Patron.Name == "튼밀둘")
                 Mil_2();
+
+            if (Patron.Name == "튼밀넷")
+                Mil_3();
 
             if (Patron.TryGetStockS("쿠라눔")) Patron.UseStockS("쿠라눔");
             if (Patron.TryGetStockS("쿠룸")) Patron.UseStockS("쿠룸");
@@ -259,13 +268,13 @@
                 if (Patron.Field.Name.Contains("13-2"))
                 {
                     _mapFlag_1 = false;
-                Thread.Sleep(300);
+                    Thread.Sleep(300);
                 }
                 else if (Patron.Field.Name.Contains("14-2"))
                 {
                     Patron.MoveByTeleport(Patron, 44, 23);
                     Patron.Walk(0, 1);
-                Thread.Sleep(300);
+                    Thread.Sleep(300);
                 }
                 else if (Patron.Field.Name.Contains("15-3"))
                 {
@@ -281,7 +290,7 @@
                 {
                     Patron.MoveByTeleport(Patron, 38, 42);
                     Patron.Walk(0, 1);
-                Thread.Sleep(300);
+                    Thread.Sleep(300);
                 }
 
                 return;
@@ -347,6 +356,120 @@
             }
         }
 
+        public void Mil_3()
+        {
+            //if (Patron.Form.chk밀트2.Checked == false) return;
+
+            if (Patron.Field.Name.Contains("13-1") == true || Patron.Field.Name.Contains("12-1") == true || Patron.Field.Name.Contains("12-2") == true) return;
+
+            int rx = Patron.r.Next(0, 2);
+            int ry = Patron.r.Next(0, 2);
+
+            int mlength = 0;
+
+            if (Patron.Field.Name.Contains("14-3")) _mapCount = 0;
+            else if (Patron.Field.Name.Contains("15-4")) _mapCount = 1;
+            else if (Patron.Field.Name.Contains("16-3")) _mapCount = 2;
+            else if (Patron.Field.Name.Contains("16-4")) _mapCount = 3;
+
+            if (_mapFlag_1)
+            {
+                if (Patron.Field.Name.Contains("14-3"))
+                {
+                    _mapFlag_1 = false;
+                    Thread.Sleep(300);
+                }
+                else if (Patron.Field.Name.Contains("15-4"))
+                {
+                    Patron.MoveByTeleport(Patron, 27, 7);
+                    Thread.Sleep(300);
+                    Patron.MoveByTeleport(Patron, 24, 30);
+                    Thread.Sleep(300);
+                    Patron.MoveByTeleport(Patron, 8, 19);
+                    Thread.Sleep(300);
+                    Patron.Walk(0, 1);
+                    Thread.Sleep(300);
+
+                }
+                else if (Patron.Field.Name.Contains("16-4"))
+                {
+                    Patron.MoveByTeleport(Patron, 32, 1);
+                    Patron.Walk(0, 1);
+                    Thread.Sleep(300);
+
+                }
+
+                return;
+            }
+
+            mlength = GetMapLength(_mapCount);
+            Patron.MoveByTeleport(Patron, GetMapPoint(_mapCount, _moveCount)[0] + rx, GetMapPoint(_mapCount, _moveCount)[1] + ry);
+
+            if(Patron.Field.Name.Contains("15-4") == true && _mapFlag_2 == true)
+            {
+                Patron.MoveByTeleport(Patron, 37, 43);
+                Thread.Sleep(1000);
+                Patron.MoveByTeleport(Patron, 37, 39);
+                Thread.Sleep(1000);
+                Patron.Walk(1, 0);
+                _moveCount = 0;
+            }
+
+            else if (_moveCount >= mlength)
+            {
+                if (Patron.Field.Name.Contains("14-3") == true)
+                {
+                    Patron.MoveByTeleport(Patron, 45, 26);
+                    Patron.Walk(0, 1);
+                    _moveCount = 0;
+                }
+                else if (Patron.Field.Name.Contains("15-4") == true)
+                {
+                    if (_mapFlag_2 == false)
+                    {
+                        Patron.MoveByTeleport(Patron, 3, 2);
+                        Patron.Walk(3, 1);
+                        _moveCount = 0;
+                    }
+                    else
+                    {
+                        Patron.MoveByTeleport(Patron, 37, 43);
+                        Thread.Sleep(100);
+                        Patron.MoveByTeleport(Patron, 37, 39);
+                        Thread.Sleep(100);
+                        Patron.Walk(1, 1);
+                        _moveCount = 0;
+
+                    }
+                }
+                else if (Patron.Field.Name.Contains("16-3") == true)
+                {
+                    Patron.MoveByTeleport(Patron, 39, 42);
+                    Patron.Walk(3, 1);
+                    _mapFlag_2 = true;
+                    _moveCount = GetMapLength(2);
+                }
+                else if (Patron.Field.Name.Contains("16-4") == true)
+                {
+                    Patron.MoveByTeleport(Patron, 32, 1);
+                    Patron.Walk(0, 1);
+
+                    _moveCount = 0;
+
+                    _mapFlag_1 = true;
+                    _mapFlag_2 = false;
+                }
+            }
+            else
+            {
+                int x = GetMapPoint(_mapCount, _moveCount)[0];
+                int y = GetMapPoint(_mapCount, _moveCount)[1];
+                if (this.Patron.X >= x && this.Patron.X <= x + 2 &&
+                    this.Patron.Y >= y && this.Patron.Y <= y + 2)
+                    _moveCount++;
+            }
+        }
+
         public int GetMapLength(int mapCount)
         {
             int mLength = 0;
@@ -374,6 +497,17 @@
                 else if (mapCount == 4)
                     mLength = m162.Length / 2 - 1;
             }
+            else if(_form.chk밀트3.Checked == true)
+            {
+                if (mapCount == 0)
+                    mLength = m143.Length / 2 - 1;
+                else if (mapCount == 1)
+                    mLength = m154.Length / 2 - 1;
+                else if (mapCount == 2)
+                    mLength = m163.Length / 2 - 1;
+                else if (mapCount == 3)
+                    mLength = m164.Length / 2 - 1;
+            }
 
             return mLength;
         }
@@ -386,6 +520,7 @@
             {
                 if (mapCount == 0)
                 {
+                    if (mapCount > m131.Length/2 - 1) mapCount = m131.Length / 2 - 1;
                     t[0] = m131[moveCount, 0];
                     t[1] = m131[moveCount, 1];
                 }
@@ -431,6 +566,29 @@
                 {
                     t[0] = m162[moveCount, 0];
                     t[1] = m162[moveCount, 1];
+                }
+            }
+            else if (_form.chk밀트3.Checked == true)
+            {
+                if (mapCount == 0)
+                {
+                    t[0] = m143[moveCount, 0];
+                    t[1] = m143[moveCount, 1];
+                }
+                else if (mapCount == 1)
+                {
+                    t[0] = m154[moveCount, 0];
+                    t[1] = m154[moveCount, 1];
+                }
+                else if (mapCount == 2)
+                {
+                    t[0] = m163[moveCount, 0];
+                    t[1] = m163[moveCount, 1];
+                }
+                else if (mapCount == 3)
+                {
+                    t[0] = m164[moveCount, 0];
+                    t[1] = m164[moveCount, 1];
                 }
             }
 
@@ -520,12 +678,12 @@
 
 
 
-            if(Patron.Field.Name.Contains("지하묘지") == false &&
+            if (Patron.Field.Name.Contains("지하묘지") == false &&
                 Patron.Field.Name.Contains("밀레스마을") == false)
             {
                 Patron.UseStockS("밀레스리콜");
             }
-            else if(Patron.Field.Name.Contains("밀레스마을"))
+            else if (Patron.Field.Name.Contains("밀레스마을"))
             {
                 Patron.mTeleport.WaitOne();
 
@@ -535,7 +693,7 @@
 
                 Patron.mTeleport.ReleaseMutex();
             }
-            else if(Patron.Field.Name.Contains("지하묘지대기실"))
+            else if (Patron.Field.Name.Contains("지하묘지대기실"))
             {
                 Patron.mTeleport.WaitOne();
                 Patron.MoveByTeleport(this.Patron, 2, 3);
@@ -611,7 +769,7 @@
                 Thread.Sleep(100);
             }
 
-            if(Patron.Form.chk밀트2.Checked == true && Patron.Field.Name.Contains("13-1"))
+            if (Patron.Form != null && (Patron.Form.chk밀트2.Checked == true || Patron.Form.chk밀트3.Checked) && Patron.Field.Name.Contains("13-1"))
             {
                 Patron.mTeleport.WaitOne();
 
@@ -620,12 +778,21 @@
 
                 Patron.mTeleport.ReleaseMutex();
             }
-            else if(Patron.Form.chk밀트2.Checked == true && Patron.Field.Name.Contains("12-1"))
+            else if (Patron.Form != null && (Patron.Form.chk밀트2.Checked == true || Patron.Form.chk밀트3.Checked) && Patron.Field.Name.Contains("12-1"))
             {
                 Patron.mTeleport.WaitOne();
 
                 Patron.MoveByTeleport(this.Patron, 17, 2);
                 Patron.Walk(2, 0);
+
+                Patron.mTeleport.ReleaseMutex();
+            }
+            else if (Patron.Form != null && Patron.Form.chk밀트3.Checked == true && Patron.Field.Name.Contains("13-2"))
+            {
+                Patron.mTeleport.WaitOne();
+
+                Patron.MoveByTeleport(this.Patron, 22, 42);
+                Patron.Walk(3, 0);
 
                 Patron.mTeleport.ReleaseMutex();
             }
