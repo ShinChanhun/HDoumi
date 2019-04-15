@@ -92,11 +92,11 @@
 
                 var field = Patron.Field;
 
+                
 
-
-                if (field.Mundanes.Count > 0)
+                if (field.Mundanes.Count > 0 && field.Name.StartsWith("지하"))
                 {
-
+                    
                     foreach (var m in field.Mundanes)
                     {
                         if (m.Value.Name.EndsWith("1") || m.Value.Name.EndsWith("2"))
@@ -136,7 +136,9 @@
             if (_treasureFlag == true) return;
 
 
-            if (Patron.Field.Name.Contains("지하묘지") == false || Patron.Field.Name.Contains("대기실") == true) return;
+            if (Patron.Field.Name.Contains("대기실") == true) return;
+
+            if (Patron.Field.Name.Contains("지하묘지") == false) return;
 
             Patron.mTeleport.WaitOne();
 
@@ -281,6 +283,9 @@
                     Patron.MoveByTeleport(Patron, 27, 29);
                     Thread.Sleep(200);
 
+                    Patron.MoveByTeleport(Patron, 20, 7);
+                    Thread.Sleep(200);
+
                     Patron.MoveByTeleport(Patron, 14, 1);
                     Patron.Walk(0, 1);
                     Thread.Sleep(300);
@@ -303,6 +308,7 @@
             {
                 if (Patron.Field.Name.Contains("13-2") == true)
                 {
+                    Thread.Sleep(300);
                     Patron.MoveByTeleport(Patron, 7, 40);
                     Patron.Walk(3, 1);
                     _moveCount = 0;
@@ -407,11 +413,29 @@
 
             if(Patron.Field.Name.Contains("15-4") == true && _mapFlag_2 == true)
             {
-                Patron.MoveByTeleport(Patron, 37, 43);
-                Thread.Sleep(1000);
-                Patron.MoveByTeleport(Patron, 37, 39);
-                Thread.Sleep(1000);
-                Patron.Walk(1, 0);
+                Patron.MoveByTeleport(Patron, 36, 47);
+                Thread.Sleep(300);
+
+                int r = Patron.r.Next(0,3);
+                switch(r)
+                {
+                    case 0:
+                        Patron.MoveByTeleport(Patron, 37, 39);
+                        Thread.Sleep(100);
+                        Patron.Walk(1, 0);
+                        break;
+                    case 1:
+                        Patron.MoveByTeleport(Patron, 38, 40);
+                        Thread.Sleep(100);
+                        Patron.Walk(0, 0);
+                        break;
+                    case 2:
+                        Patron.MoveByTeleport(Patron, 39, 39);
+                        Thread.Sleep(100);
+                        Patron.Walk(3, 0);
+                        break;
+
+                }
                 _moveCount = 0;
             }
 
@@ -679,19 +703,107 @@
 
 
             if (Patron.Field.Name.Contains("지하묘지") == false &&
-                Patron.Field.Name.Contains("밀레스마을") == false)
+                Patron.Field.Name.Contains("밀레스마을") == false &&
+                Patron.TryGetStockS("밀레스리콜") == true)
             {
                 Patron.UseStockS("밀레스리콜");
             }
             else if (Patron.Field.Name.Contains("밀레스마을"))
             {
-                Patron.mTeleport.WaitOne();
 
-                Patron.MoveByTeleport(this.Patron, 50, 10);
-                Patron.Walk(1, 0);
-                Patron.Walk(1, 0);
 
-                Patron.mTeleport.ReleaseMutex();
+                if (Patron.TryGetStockS("밀레스리콜") == false)
+                {
+                    Patron.mTeleport.WaitOne();
+
+                    Patron.MoveByTeleport(this.Patron, 32, 76);
+
+                    Patron.Walk(3, 0);
+
+                    Patron.mTeleport.ReleaseMutex();
+                }
+                else
+                {
+                    Patron.mTeleport.WaitOne();
+
+                    Patron.MoveByTeleport(this.Patron, 50, 10);
+                    Patron.Walk(1, 0);
+                    Patron.Walk(1, 0);
+
+                    Patron.mTeleport.ReleaseMutex();
+                }
+            }
+            else if(Patron.Field.Name.Contains("밀레스잡화상점B"))
+            {
+                uint guid = 0;
+                foreach (var pair2 in Patron.Field.Mundanes)
+                {
+                    if (pair2.Value.Name == "죠지")
+                    {
+                        guid = pair2.Value.Guid;
+                        break;
+                    }
+                }
+
+                NexonClientPacket packet = new NexonClientPacket(this.Patron, 0x43);
+                packet.WriteU1(1);
+                packet.WriteU4(guid);
+                packet.WriteU1(0);
+                this.Patron.Server.Send(packet);
+                Thread.Sleep(500);
+
+                packet = new NexonClientPacket(this.Patron, 0x39);
+                packet.WriteU1(1);
+                packet.WriteU4(guid);
+                packet.WriteU1(0);
+                packet.WriteU1(0x40);
+                packet.WriteU1(0);
+                this.Patron.Server.Send(packet);
+                Thread.Sleep(500);
+
+                packet = new NexonClientPacket(this.Patron, 0x39);
+                packet.WriteU1(1);
+                packet.WriteU4(guid);
+                packet.WriteU1(0);
+                packet.WriteU1(0x4a);
+                packet.WriteU1(0x0a);
+                packet.WriteU1(0xb9);
+                packet.WriteU1(0xd0);
+                packet.WriteU1(0xb7);
+                packet.WriteU1(0xb9);
+                packet.WriteU1(0xbd);
+                packet.WriteU1(0xba);
+                packet.WriteU1(0xb8);
+                packet.WriteU1(0xae);
+                packet.WriteU1(0xc4);
+                packet.WriteU1(0xdd);
+                packet.WriteU1(0);
+                this.Patron.Server.Send(packet);
+
+                packet = new NexonClientPacket(this.Patron, 0x39);
+                packet.WriteU1(1);
+                packet.WriteU4(guid);
+                packet.WriteU1(0);
+                packet.WriteU1(0x4c);
+                packet.WriteU1(0x0a);
+                packet.WriteU1(0xb9);
+                packet.WriteU1(0xd0);
+                packet.WriteU1(0xb7);
+                packet.WriteU1(0xb9);
+                packet.WriteU1(0xbd);
+                packet.WriteU1(0xba);
+                packet.WriteU1(0xb8);
+                packet.WriteU1(0xae);
+                packet.WriteU1(0xc4);
+                packet.WriteU1(0xdd);
+                packet.WriteU1(0x03);
+                packet.WriteU1(0x31);
+                packet.WriteU1(0x30);
+                packet.WriteU1(0x30);
+                packet.WriteU1(0);
+                this.Patron.Server.Send(packet);
+                Thread.Sleep(500);
+
             }
             else if (Patron.Field.Name.Contains("지하묘지대기실"))
             {
