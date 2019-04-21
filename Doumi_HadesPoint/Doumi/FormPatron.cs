@@ -503,6 +503,88 @@
 
         }
 
+        public void Mil()
+        {
+            int num = this.Patron.WhatisMyClass();
+
+            this.tbTarget.Text = "huntw";
+            var a = this.Patron.Name;
+            switch (a)
+            {
+                case "huntw":
+                    break;
+                case "huntr":
+                    break;
+                case "huntb"://직자
+                    this.chkKolama.Checked = true;
+                    this.chkHorrma.Checked = true;
+
+                    if (_despell == null)
+                    {
+                        _despell = new Despell(this.Patron);
+                        _despell.Start();
+                    }
+
+                    Program.Form.ThreadSafeInvoke(() => this.chk디스펠.Checked = true);
+                    break;
+                case "hunts"://법사
+                    this.chk델리.Checked = true;
+                    this.chkSA.Checked = true;
+
+                    if (_curse == null)
+                    {
+                        _curse = new Curse(this.Patron);
+                        _curse.Start();
+                    }
+
+                    Program.Form.ThreadSafeInvoke(() => this.chk저주.Checked = true);
+                    Program.Form.ThreadSafeInvoke(() => this.chk자동데프.Checked = true);
+                    Program.Form.ThreadSafeInvoke(() => this.chk나르.Checked = true);
+                    break;
+                case "humtm":
+                    this.chk디베.Checked = false;
+                    this.chk일루.Checked = false;
+                    this.chk쿠랄툼.Checked = false;
+                    this.chk라이트닝무브.Checked = false;
+                    this.chk콜라.Checked = false;
+                    this.chk리플.Checked = false;
+                    break;
+                case "튼밀하나":
+                    if (this._milessTresure == null)
+                    {
+                        this._milessTresure = new MilessTresure(this.Patron);
+                        this._milessTresure.Start();
+                    }
+                    this.chk밀트1.Checked = true;
+                    break;
+                case "튼밀둘":
+                    if (this._milessTresure == null)
+                    {
+                        this._milessTresure = new MilessTresure(this.Patron);
+                        this._milessTresure.Start();
+                    }
+                    this.chk밀트2.Checked = true;
+                    break;
+                case "튼밀셋":
+                    if (this._milessTresure == null)
+                    {
+                        this._milessTresure = new MilessTresure(this.Patron);
+                        this._milessTresure.Start();
+                    }
+                    this.chk밀트3.Checked = true;
+                    break;
+                case "튼밀넷":
+                    if (this._milessTresure == null)
+                    {
+                        this._milessTresure = new MilessTresure(this.Patron);
+                        this._milessTresure.Start();
+                    }
+                    this.chk밀트3.Checked = true;
+                    break;
+            }
+
+        }
+
         private void AddDespellList()
         {
             this.tbHeal.Value = 70;

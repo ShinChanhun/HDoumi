@@ -51,6 +51,7 @@
                         this.PatronConnected(patron);
                         patron.Client.BeginReceiveHeader(new AsyncCallback(this.ClientHeaderResult), patron);
                         patron.Server.BeginReceiveHeader(new AsyncCallback(this.ServerHeaderResult), patron);
+
                     }
                 }
             Label_0097:
@@ -1577,6 +1578,7 @@
             else if (server.HeaderComplete)
             {
                 server.BeginReceivePacket(new AsyncCallback(this.ServerPacketResult), asyncState);
+                
             }
             else
             {

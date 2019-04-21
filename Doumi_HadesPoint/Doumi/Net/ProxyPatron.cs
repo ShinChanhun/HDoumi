@@ -674,7 +674,8 @@
 
             if (patron.TryGetStockS("[TEST]테슬러의깃털(1일)", out stock) || patron.TryGetStockS("[TEST]테슬러의깃털(1일)", out stock))
             {
-                this.Field.GetPath(this.X, this.Y, x, y, out this.TeleportPath);
+                if (this.Field.GetPath(this.X, this.Y, x, y, out this.TeleportPath) == false)
+                    return false;
                 List<PathFinder.Node> list = new List<PathFinder.Node>();
                 try
                 {

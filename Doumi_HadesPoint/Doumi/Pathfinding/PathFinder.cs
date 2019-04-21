@@ -32,6 +32,8 @@
 
         public List<Node> Find(int x1, int y1, int x2, int y2)
         {
+            if (this.field.Rows <= x2 || this.field.Cols <= y2) return null;
+
             if (this.field[x2, y2].Solid)
             {
                 return null;
