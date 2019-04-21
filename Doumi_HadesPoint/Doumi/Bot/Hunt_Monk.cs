@@ -40,7 +40,11 @@
         private void Auto()
         {
             this.Patron.Form.chk자동보호.Checked = true;
-
+            this.Patron.Form.chkShot.Checked = true;
+            this.Patron.Form.chk일루.Checked = false;
+            this.Patron.Form.chk디베.Checked = false;
+            this.Patron.Form.chk리플.Checked = false;
+            this.Patron.Form.chk콜라.Checked = false;
             //this.Patron.Form.chk자동보호.Checked = true;
             //this.Patron.Form.chk변신.Checked = true;
             //this.Patron.Form.checkBox_27.Checked = false;

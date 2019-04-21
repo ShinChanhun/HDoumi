@@ -52,6 +52,57 @@
                                 continue;
                             }
 
+                            if (this.Patron.Form.check갬유.Checked == true)
+                            {
+                                int r1 = 0;
+                                int r2 = 0;
+                                this.Patron.mTeleport.WaitOne();
+                                Thread.Sleep(100);
+                                if (this.Patron.Field.Name.Contains("노엠여관"))
+                                {
+                                    this.Patron.MoveByTeleport(this.Patron, 4, 16);
+                                    this.Patron.Walk(2, 0);
+                                }
+                                else if (this.Patron.Field.Name.Contains("노엠대평원"))
+                                {
+                                    r1 = this.Patron.r.Next(0, 2);
+                                    this.Patron.MoveByTeleport(this.Patron, 39 + r1, 89);
+                                    this.Patron.Walk(0, 0);
+                                }
+                                else if (this.Patron.Field.Name.Contains("노엠"))
+                                {
+                                    r1 = this.Patron.r.Next(0, 10);
+
+                                    this.Patron.MoveByTeleport(this.Patron, 98 , 32 +r1);
+                                    this.Patron.Walk(1, 0);
+                                }
+
+                                else if (this.Patron.Field.Name.Contains("엔도르1"))
+                                {
+                                    if (this.Patron.X >= 21 && this.Patron.X < 21 + 5 &&
+                                        this.Patron.Y >= 24 && this.Patron.Y < 24 + 5)
+                                    {
+                                        /*
+                                        43 01 00 00 0f a4 00
+                                        39 01 00 00 0f a4 04 16 00
+                                        3a 01 00 00 0f a4 00 00 00 02 00 ab
+                                        3a 01 00 00 0f a4 00 00 00 02 01 01 00
+                                        3a 01 00 00 0f a4 00 00 00 02 00 14    
+                                     */
+                                    }
+                                    else
+                                    {
+                                        r1 = this.Patron.r.Next(0, 5);
+                                        r2 = this.Patron.r.Next(0, 5);
+                                        this.Patron.MoveByTeleport(this.Patron, 21 + r1, 24 + r2);
+
+                                    }
+                                }
+
+                                this.Patron.mTeleport.ReleaseMutex();
+                                continue;
+                            }
+
                             if (this.Patron.Field.Name.Contains("노엠") || this.Patron.Field.Name.Contains("아슬론"))
                             {
                                 if (this.Patron.TryGetStockS("시장리콜"))
@@ -141,9 +192,9 @@
                             this.Patron.mTeleport.WaitOne();
                             Thread.Sleep(100);
 
-                            if(field.Name.StartsWith("시장은행"))
+                            if (field.Name.StartsWith("시장은행"))
                             {
-                                if (this.Patron.TryGetStockS("[TEST]테슬러의깃털(1일)") == false )
+                                if (this.Patron.TryGetStockS("[TEST]테슬러의깃털(1일)") == false)
                                 {
                                     this.Patron.MoveToDestination(10, 5);
 
@@ -171,12 +222,12 @@
                                     packet.WriteU1(0);
                                     this.Patron.Server.Send(packet);
                                     this.Patron.PanelClose();
-                                    
+
 
                                     Thread.Sleep(100);
                                 }
 
-                                if(this.Patron.TryGetStockS("[TEST]세토아의가호(Lev2)") == false)
+                                if (this.Patron.TryGetStockS("[TEST]세토아의가호(Lev2)") == false)
                                 {
                                     uint guid = 0;
                                     foreach (KeyValuePair<uint, Mundane> pair2 in field.Mundanes)
@@ -190,7 +241,7 @@
 
                                     this.Patron.Speak("주세요");
 
-                                    NexonClientPacket packet  = new NexonClientPacket(this.Patron, 0x3a);
+                                    NexonClientPacket packet = new NexonClientPacket(this.Patron, 0x3a);
                                     packet.WriteU1(1);
                                     packet.WriteU4(guid);
                                     packet.WriteU1(0);
@@ -209,15 +260,6 @@
 
                             if (field.Name.StartsWith("시장2"))
                             {
-                                //if(this.Patron.TryGetStockS("[TEST]테슬러의깃털(1일)") == false)
-                                //{
-                                //    this.Patron.MoveToDestination(9, 7);
-
-                                //    Thread.Sleep(100);
-
-                                //    continue;
-                                //}
-
                                 uint guid = 0;
                                 foreach (KeyValuePair<uint, Mundane> pair2 in field.Mundanes)
                                 {
@@ -437,51 +479,6 @@
                                 {
                                     this.Patron.MoveByTeleport(this.Patron, 1, 63);
                                     this.Patron.Walk(3, 0);
-
-                                    //int num = this.Patron.WhatisMyClass();
-                                    //if ((this.Patron.Form != null))
-                                    //{
-                                    //    switch (num)
-                                    //    {
-                                    //        case 0:
-                                    //            this.Patron.Form.chk자동사냥.Checked = true;
-                                    //            if (this.Patron.Form._hunt_Warrior == null)
-                                    //            {
-                                    //                this.Patron.Form._hunt_Warrior = new Hunt_Warrior(this.Patron);
-                                    //                this.Patron.Form._hunt_Warrior.Start();
-                                    //            }
-                                    //            break;
-                                    //        case 1:
-                                    //            this.Patron.Form.chk자동사냥.Checked = true;
-
-                                    //            if (this.Patron.Form._hunt_Rogue == null)
-                                    //            {
-
-                                    //                this.Patron.Form._hunt_Rogue = new Hunt_Rogue(this.Patron);
-                                    //                this.Patron.Form._hunt_Rogue.Start();
-                                    //            }
-                                    //            break;
-                                    //        //case 2:
-                                    //        //    this.Patron.Form._hunt_Bard = new Hunt_Bard(this.Patron);
-                                    //        //    this.Patron.Form._hunt_Bard.Start();
-                                    //        //    break;
-
-                                    //        //case 3:
-                                    //        //    this.Patron.Form._hunt_Wizard = new Hunt_Wizard(this.Patron);
-                                    //        //    this.Patron.Form._hunt_Wizard.Start();
-                                    //        //    break;
-                                    //        case 4:
-                                    //            this.Patron.Form.chk자동사냥.Checked = true;
-
-                                    //            if (this.Patron.Form._hunt_Monk == null)
-                                    //            {
-
-                                    //                this.Patron.Form._hunt_Monk = new Hunt_Monk(this.Patron);
-                                    //                this.Patron.Form._hunt_Monk.Start();
-                                    //            }
-                                    //            break;
-                                    //    }
-                                    //}
 
                                 }
                                 //if (field.Name.EndsWith("블랙오피온의굴1"))

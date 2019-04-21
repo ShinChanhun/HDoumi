@@ -38,7 +38,7 @@
                     {
                         double introduced32 = Math.Pow((double) (pair.Value.X - this.Patron.X), 2.0);
                         int num = (int) Math.Sqrt(introduced32 + Math.Pow((double) (pair.Value.Y - this.Patron.Y), 2.0));
-                        if (this.Patron.isState() || (this.Patron.Form.chk이모탈.Checked && !this.Patron.protectList.is이모탈))
+                        if ( this.Patron.Form != null && (this.Patron.isState() || (this.Patron.Form.chk이모탈.Checked && !this.Patron.protectList.is이모탈)))
                         {
                             break;
                         }
@@ -71,7 +71,7 @@
                     {
                         foreach (KeyValuePair<uint, Monster> pair2 in field.Monsters)
                         {
-                            if (this.Patron.isState() || (this.Patron.Form.chk이모탈.Checked && !this.Patron.protectList.is이모탈))
+                            if (this.Patron.Form != null && (this.Patron.isState() || (this.Patron.Form.chk이모탈.Checked && !this.Patron.protectList.is이모탈)))
                             {
                                 break;
                             }

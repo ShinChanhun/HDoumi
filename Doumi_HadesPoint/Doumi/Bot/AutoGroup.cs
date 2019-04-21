@@ -42,6 +42,7 @@
                     bool result = false;
                     uint guid = pair.Value.Guid;
 
+                    if (this.Patron.Form == null) continue;
                     if (this.Patron.Form.groupList == null) continue;
 
                     foreach (var nameValue in this.Patron.Form.groupList)

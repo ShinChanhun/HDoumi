@@ -1460,7 +1460,7 @@
             {
                 num = 1;
             }
-            if (this.TryGetSkill("연주", out skill) || (this.Name == "huntb"))
+            if (this.TryGetSkill("연주", out skill) || (this.Name == "huntb") || (this.Name == "스낵"))
             {
                 num = 2;
             }

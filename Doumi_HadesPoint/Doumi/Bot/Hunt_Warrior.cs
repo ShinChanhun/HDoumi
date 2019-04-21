@@ -61,34 +61,34 @@
                 this.Patron.mMonster.WaitOne();
                 if (mmonster == null)
                 {
-                    foreach (KeyValuePair<uint, Monster> pair in field.Monsters)
-                    {
-                        int num4 = (int)Math.Sqrt(Math.Pow((double)((int)pair.Value.X - (int)this.Patron.X), 2.0) + Math.Pow((double)((int)pair.Value.Y - (int)this.Patron.Y), 2.0));
+                    //foreach (KeyValuePair<uint, Monster> pair in field.Monsters)
+                    //{
+                    //    int num4 = (int)Math.Sqrt(Math.Pow((double)((int)pair.Value.X - (int)this.Patron.X), 2.0) + Math.Pow((double)((int)pair.Value.Y - (int)this.Patron.Y), 2.0));
 
-                        if (field.method_1(pair.Value.Icon) && num4 < 8)
-                        {
-                            flag1 = true;
-                        }
-                        if (this.Patron.Field.method_1(pair.Value.Icon) /*&& (pair.Value.Tint == (byte)1 */ /*&& this.Patron.Form.CheckMonster(pair.Value.Icon)*//*)*/ && (num4 < dis && this.Patron.Form.isAttackable((int)pair.Value.X, (int)pair.Value.Y)))
-                        {
-                            if (this.Patron.Form.CheckMonster(pair.Value.Icon) == true)
-                            {
-                                dis = num4;
-                                guid = pair.Key;
-                            }
-                            else
-                            {
-                                if (field.Name.Contains("레드오피온의굴29") == true) continue;
-                                if (pair.Value.Tint == (byte)1)
-                                {
-                                    dis = num4;
-                                    guid = pair.Key;
-                                }
-                            }
-                        }
-                    }
-                    if (!flag1)
-                    {
+                    //    if (field.method_1(pair.Value.Icon) && num4 < 8)
+                    //    {
+                    //        flag1 = true;
+                    //    }
+                    //    if (this.Patron.Field.method_1(pair.Value.Icon) /*&& (pair.Value.Tint == (byte)1 */ /*&& this.Patron.Form.CheckMonster(pair.Value.Icon)*//*)*/ && (num4 < dis && this.Patron.Form.isAttackable((int)pair.Value.X, (int)pair.Value.Y)))
+                    //    {
+                    //        if (this.Patron.Form.CheckMonster(pair.Value.Icon) == true)
+                    //        {
+                    //            dis = num4;
+                    //            guid = pair.Key;
+                    //        }
+                    //        else
+                    //        {
+                    //            if (field.Name.Contains("레드오피온의굴29") == true) continue;
+                    //            if (pair.Value.Tint == (byte)1)
+                    //            {
+                    //                dis = num4;
+                    //                guid = pair.Key;
+                    //            }
+                    //        }
+                    //    }
+                    //}
+                    //if (!flag1)
+                    //{
                         foreach (KeyValuePair<uint, Monster> pair in field.Monsters)
                         {
                             int distance = (int)Math.Sqrt(Math.Pow((double)((int)pair.Value.X - (int)this.Patron.X), 2.0) + Math.Pow((double)((int)pair.Value.Y - (int)this.Patron.Y), 2.0));
@@ -112,14 +112,14 @@
                             if (dis == 1)
                                 break;
                         }
-                    }
+                    //}
                 }
                 else
                 {
                     dis = (int)Math.Sqrt(Math.Pow((double)((int)mmonster.X - (int)this.Patron.X), 2.0) + Math.Pow((double)((int)mmonster.Y - (int)this.Patron.Y), 2.0));
                     guid = mmonster.Guid;
                 }
-
+                
                 Monster monster;
                 field.Monsters.TryGetValue(guid, out monster);
 
@@ -143,7 +143,7 @@
 
                 this.Patron.mMonster.ReleaseMutex();
 
-                if (dis != int.MaxValue && dis < 9 && monster != null)
+                if (dis != int.MaxValue && dis < 11 && monster != null)
                 {
                     ushort ushort_4 = 999;
                     ushort ushort_5 = 62;
@@ -267,15 +267,20 @@
                                 monster.Amnesia = true;
                             }
                         }
+
+                        Thread.Sleep(500);
                     }
+
+                    
                 }
                 else
                 {
                     int monsterCount = 0;
                     foreach (KeyValuePair<uint, Monster> pair in field.Monsters)
                     {
-                        if ((int)Math.Sqrt(Math.Pow((double)((int)pair.Value.X - (int)this.Patron.X), 2.0) + Math.Pow((double)((int)pair.Value.Y - (int)this.Patron.Y), 2.0)) <= 8 /*&& keyValuePair.Value.Tint == (byte)1*/
-                                                                                                                                                                                   /*&& this.Patron.Form.CheckMonster(pair.Value.Icon) == true*/)
+                        if ((int)Math.Sqrt(Math.Pow((double)((int)pair.Value.X - (int)this.Patron.X), 2.0) + Math.Pow((double)((int)pair.Value.Y - (int)this.Patron.Y), 2.0)) <= 8 
+                            /*&& keyValuePair.Value.Tint == (byte)1*//*&& this.Patron.Form.CheckMonster(pair.Value.Icon) == true*/
+                            && this.Patron.Form.CheckMonster(pair.Value.Icon) == true)
                         {
                             if (this.Patron.Form.CheckMonster(pair.Value.Icon) == true)
                             {
@@ -302,7 +307,6 @@
                     {
                         Thread.Sleep(3000);
                     }
-
                     else if (!this.Patron.Form.chk따라가기.Checked)
                     {
                         ushort dx;

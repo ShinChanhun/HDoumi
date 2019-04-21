@@ -226,7 +226,36 @@
         public CheckBox chk밀트4;
         public CheckBox chk밀트3;
         public CheckBox chk밀트2;
-        int[] monsterArr = { 16586, 16701, 16590, 16699, /*베레스16593,*/ 16700, 16702 };
+        /*
+            16701 3두
+            16586 뉴트
+            16590 2두
+            16699 1두
+         */
+        int[] monsterArr = { 16699, 16586, 16590, 16701, /*베레스16593,*/ 16700, 16702 };
+
+        public int FirstMonster(ushort icon)
+        {
+            int count = 0;
+            if (Patron.Field.Name.Contains("오피온의굴29"))
+            {
+                foreach (ushort arrIcon in monsterArr)
+                {
+                    if (arrIcon == icon)
+                        return count;
+
+                    count++;
+                }
+                count = 100;
+                return count;
+            }
+            else
+            {
+                count = 100;
+
+                return count;
+            }
+        }
 
         public bool CheckMonster(ushort icon)
         {
@@ -277,16 +306,16 @@
             //    this._hunt_Monk.Abort();
             //    this._hunt_Monk = null;
             //}
-            //if (this._protect != null)
-            //{
-            //    this._protect.Abort();
-            //    this._protect = null;
-            //}
-            //if (this._buffControl != null)
-            //{
-            //    this._buffControl.Abort();
-            //    this._buffControl = null;
-            //}
+            if (this._protect != null)
+            {
+                this._protect.Abort();
+                this._protect = null;
+            }
+            if (this._buffControl != null)
+            {
+                this._buffControl.Abort();
+                this._buffControl = null;
+            }
             //if (this._mapMove != null)
             //{
             //    this._mapMove.Abort();
@@ -363,9 +392,10 @@
             //    }
             //}
 
-            this.chk세토아가호.Checked = true;
+            this.chk세토아가호.Checked = false;
+            this.chk이아가호.Checked = true;
             this.chk걸리적.Checked = true;
-            this.check레드.Checked = true;
+            //this.check레드.Checked = true;
 
             //this.chk맵이동.Checked = true;
             //if(this._mapMove == null)
@@ -380,6 +410,19 @@
                 _loot = new Loot(this.Patron);
                 _loot.Start();
             }
+
+            //if(_protect == null)
+            //{
+            //    _protect = new Protect(this.Patron);
+            //    _protect.Start();
+            //}
+
+            //if(_buffControl == null)
+            //{
+            //    _buffControl = new BuffControl(this.Patron);
+            //    _buffControl.Start();
+            //}
+
             Program.Form.ThreadSafeInvoke(() => this.chk자동루팅.Checked = true);
             //Program.Form.ThreadSafeInvoke(() => this.chk버프.Checked = true);
             //Program.Form.ThreadSafeInvoke(() => this.chk자동보호.Checked = true);
@@ -394,9 +437,21 @@
                     break;
                 case "huntr":
                     break;
+                case "스낵":
+                    if (_despell == null)
+                    {
+                        _despell = new Despell(this.Patron);
+                        _despell.Start();
+                    }
+
+                    Program.Form.ThreadSafeInvoke(() => this.chk디스펠.Checked = true);
+
+                    this.chk그룹힐.Checked = false;
+                    break;
                 case "huntb"://직자
                     this.chkKolama.Checked = true;
                     this.chkHorrma.Checked = true;
+                    this.chk코마.Checked = true;
 
                     if (_despell == null)
                     {
