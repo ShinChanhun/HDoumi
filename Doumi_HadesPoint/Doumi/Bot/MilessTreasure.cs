@@ -309,9 +309,27 @@
                 if (Patron.Field.Name.Contains("13-2") == true)
                 {
                     Thread.Sleep(300);
-                    Patron.MoveByTeleport(Patron, 7, 40);
-                    Patron.Walk(3, 1);
-                    _moveCount = 0;
+
+                    int r = Patron.r.Next(0, 3);
+
+                    switch(r)
+                    {
+                        case 0:
+                            Patron.MoveByTeleport(Patron, 6, 41);
+                            Patron.Walk(0, 0);
+                            _moveCount = 0;
+                            break;
+                        case 1:
+                            Patron.MoveByTeleport(Patron, 5, 40);
+                            Patron.Walk(1, 0);
+                            _moveCount = 0;
+                            break;
+                        case 2:
+                            Patron.MoveByTeleport(Patron, 7, 40);
+                            Patron.Walk(3, 0);
+                            _moveCount = 0;
+                            break;
+                    }
                 }
                 else if (Patron.Field.Name.Contains("14-2") == true)
                 {
@@ -544,7 +562,7 @@
             {
                 if (mapCount == 0)
                 {
-                    if (mapCount > m131.Length/2 - 1) mapCount = m131.Length / 2 - 1;
+                    if (moveCount > m131.Length/2 - 1) moveCount = m131.Length / 2 - 1;
                     t[0] = m131[moveCount, 0];
                     t[1] = m131[moveCount, 1];
                 }
