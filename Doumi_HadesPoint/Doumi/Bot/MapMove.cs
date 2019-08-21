@@ -133,7 +133,7 @@
                                     packet = new NexonClientPacket(this.Patron, 0x3a);
                                     packet.WriteU1(1);
                                     packet.WriteU4(guid);
-                                    packet.WriteU2(0xc1);
+                                    packet.WriteU2(0xcd);
                                     packet.WriteU2(i);
                                     packet.WriteU2(0);
                                     this.Patron.Server.Send(packet);
@@ -142,7 +142,7 @@
                                 packet = new NexonClientPacket(this.Patron, 0x3a);
                                 packet.WriteU1(1);
                                 packet.WriteU4(guid);
-                                packet.WriteU2(0xc1);
+                                packet.WriteU2(0xcd);
                                 packet.WriteU2(5);
                                 packet.WriteU1(1);
                                 packet.WriteU1(1);

@@ -142,13 +142,13 @@
 
             Patron.mTeleport.WaitOne();
 
-            if (Patron.Name == "튼밀하나")
+            if (Patron.Name == "지존하나")
                 Mil_1();
 
-            if (Patron.Name == "튼밀둘")
+            if (Patron.Name == "지존둘")
                 Mil_2();
 
-            if (Patron.Name == "튼밀넷")
+            if (Patron.Name == "지존셋")
                 Mil_3();
 
             if (Patron.TryGetStockS("쿠라눔")) Patron.UseStockS("쿠라눔");
@@ -663,7 +663,7 @@
                     packet = new NexonClientPacket(this.Patron, 0x3a);
                     packet.WriteU1(1);
                     packet.WriteU4(guid);
-                    packet.WriteU2(0xc1);
+                    packet.WriteU2(0xd2);
                     packet.WriteU2(i);
                     packet.WriteU2(0);
                     this.Patron.Server.Send(packet);
@@ -672,7 +672,7 @@
                 packet = new NexonClientPacket(this.Patron, 0x3a);
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
-                packet.WriteU2(0xc1);
+                packet.WriteU2(0xd2);
                 packet.WriteU2(5);
                 packet.WriteU1(1);
                 packet.WriteU1(1);
@@ -851,7 +851,7 @@
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
                 packet.WriteU1(0);
-                packet.WriteU1(0xc3);
+                packet.WriteU1(0xd4);
                 packet.WriteU1(0);
                 packet.WriteU1(0x0c);
                 packet.WriteU1(1);
@@ -865,7 +865,7 @@
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
                 packet.WriteU1(0);
-                packet.WriteU1(0xc3);
+                packet.WriteU1(0xd4);
                 packet.WriteU1(0);
                 packet.WriteU1(0x15);
                 packet.WriteU1(0);
@@ -876,7 +876,7 @@
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
                 packet.WriteU1(0);
-                packet.WriteU1(0xc3);
+                packet.WriteU1(0xd4);
                 packet.WriteU1(0);
                 packet.WriteU1(0x1b);
                 packet.WriteU1(1);
@@ -890,7 +890,7 @@
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
                 packet.WriteU1(0);
-                packet.WriteU1(0xc3);
+                packet.WriteU1(0xd4);
                 packet.WriteU1(0);
                 packet.WriteU1(0x2c);
                 packet.WriteU1(0);
