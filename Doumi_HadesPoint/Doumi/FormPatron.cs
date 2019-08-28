@@ -405,11 +405,11 @@
             //}
             //Program.Form.ThreadSafeInvoke(() => this.chk맵이동.Checked = true);
 
-            if (_loot == null)
-            {
-                _loot = new Loot(this.Patron);
-                _loot.Start();
-            }
+            //if (_loot == null)
+            //{
+            //    _loot = new Loot(this.Patron);
+            //    _loot.Start();
+            //}
 
             //if(_protect == null)
             //{
@@ -423,7 +423,7 @@
             //    _buffControl.Start();
             //}
 
-            Program.Form.ThreadSafeInvoke(() => this.chk자동루팅.Checked = true);
+            //Program.Form.ThreadSafeInvoke(() => this.chk자동루팅.Checked = true);
             //Program.Form.ThreadSafeInvoke(() => this.chk버프.Checked = true);
             //Program.Form.ThreadSafeInvoke(() => this.chk자동보호.Checked = true);
 

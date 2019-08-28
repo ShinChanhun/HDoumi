@@ -92,11 +92,11 @@
 
                 var field = Patron.Field;
 
-                
+
 
                 if (field.Mundanes.Count > 0 && field.Name.StartsWith("지하"))
                 {
-                    
+
                     foreach (var m in field.Mundanes)
                     {
                         if (m.Value.Name.EndsWith("1") || m.Value.Name.EndsWith("2"))
@@ -107,6 +107,8 @@
                             packet.WriteU4(m.Value.Guid);
                             packet.WriteU1(0);
                             this.Patron.Server.Send(packet);
+
+                            Thread.Sleep(1000);
                         }
                         else
                         {
@@ -312,7 +314,7 @@
 
                     int r = Patron.r.Next(0, 3);
 
-                    switch(r)
+                    switch (r)
                     {
                         case 0:
                             Patron.MoveByTeleport(Patron, 6, 41);
@@ -354,10 +356,21 @@
                 }
                 else if (Patron.Field.Name.Contains("15-3") == true)
                 {
-                    Patron.MoveByTeleport(Patron, 15, 22);
-                    Patron.Walk(0, 1);
+                    int rx1 = Patron.r.Next(0, 2);
+                    int ry1 = Patron.r.Next(0, 2);
+                    Patron.MoveByTeleport(Patron, 15 + rx1, 25 + ry1);
 
-                    _moveCount = 0;
+                    Thread.Sleep(1000);
+
+                    if(Patron.X >= 15 && Patron.X <= 15 + rx1 &&
+                        Patron.Y >= 25 & Patron.Y <= 25+ry1)
+                    {
+                        Patron.MoveByTeleport(Patron, 15, 22);
+                        Patron.Walk(0, 1);
+
+                        _moveCount = 0;
+                    }
+
                 }
                 else if (Patron.Field.Name.Contains("16-2") == true)
                 {
@@ -429,32 +442,42 @@
             mlength = GetMapLength(_mapCount);
             Patron.MoveByTeleport(Patron, GetMapPoint(_mapCount, _moveCount)[0] + rx, GetMapPoint(_mapCount, _moveCount)[1] + ry);
 
-            if(Patron.Field.Name.Contains("15-4") == true && _mapFlag_2 == true)
+            if (Patron.Field.Name.Contains("15-4") == true && _mapFlag_2 == true)
             {
-                Patron.MoveByTeleport(Patron, 36, 47);
-                Thread.Sleep(300);
+                int rx2 = Patron.r.Next(0, 2);
+                int ry2 = Patron.r.Next(0, 2);
 
-                int r = Patron.r.Next(0,3);
-                switch(r)
+                Patron.MoveByTeleport(Patron, 43 + rx2, 43 + ry2);
+                Thread.Sleep(2000);
+
+
+                int r = Patron.r.Next(0, 3);
+
+                if (Patron.X >= 43 && Patron.X <= 43 + rx2 &&
+                    Patron.Y >= 43 && Patron.Y <= 43 + ry2)
                 {
-                    case 0:
-                        Patron.MoveByTeleport(Patron, 37, 39);
-                        Thread.Sleep(100);
-                        Patron.Walk(1, 0);
-                        break;
-                    case 1:
-                        Patron.MoveByTeleport(Patron, 38, 40);
-                        Thread.Sleep(100);
-                        Patron.Walk(0, 0);
-                        break;
-                    case 2:
-                        Patron.MoveByTeleport(Patron, 39, 39);
-                        Thread.Sleep(100);
-                        Patron.Walk(3, 0);
-                        break;
+                    switch (r)
+                    {
+                        case 0:
+                            Patron.MoveByTeleport(Patron, 37, 39);
+                            Thread.Sleep(100);
+                            Patron.Walk(1, 0);
+                            break;
+                        case 1:
+                            Patron.MoveByTeleport(Patron, 38, 40);
+                            Thread.Sleep(100);
+                            Patron.Walk(0, 0);
+                            break;
+                        case 2:
+                            Patron.MoveByTeleport(Patron, 39, 39);
+                            Thread.Sleep(100);
+                            Patron.Walk(3, 0);
+                            break;
 
+                    }
+                    _moveCount = 0;
                 }
-                _moveCount = 0;
+
             }
 
             else if (_moveCount >= mlength)
@@ -539,7 +562,7 @@
                 else if (mapCount == 4)
                     mLength = m162.Length / 2 - 1;
             }
-            else if(_form.chk밀트3.Checked == true)
+            else if (_form.chk밀트3.Checked == true)
             {
                 if (mapCount == 0)
                     mLength = m143.Length / 2 - 1;
@@ -562,7 +585,7 @@
             {
                 if (mapCount == 0)
                 {
-                    if (moveCount > m131.Length/2 - 1) moveCount = m131.Length / 2 - 1;
+                    if (moveCount > m131.Length / 2 - 1) moveCount = m131.Length / 2 - 1;
                     t[0] = m131[moveCount, 0];
                     t[1] = m131[moveCount, 1];
                 }
@@ -751,7 +774,7 @@
                     Patron.mTeleport.ReleaseMutex();
                 }
             }
-            else if(Patron.Field.Name.Contains("밀레스잡화상점B"))
+            else if (Patron.Field.Name.Contains("밀레스잡화상점B"))
             {
                 uint guid = 0;
                 foreach (var pair2 in Patron.Field.Mundanes)
@@ -763,64 +786,71 @@
                     }
                 }
 
-                NexonClientPacket packet = new NexonClientPacket(this.Patron, 0x43);
-                packet.WriteU1(1);
-                packet.WriteU4(guid);
-                packet.WriteU1(0);
-                this.Patron.Server.Send(packet);
-                Thread.Sleep(500);
+                if (Patron.TryGetStockS("밀레스리콜") == false)
+                {
 
-                packet = new NexonClientPacket(this.Patron, 0x39);
-                packet.WriteU1(1);
-                packet.WriteU4(guid);
-                packet.WriteU1(0);
-                packet.WriteU1(0x40);
-                packet.WriteU1(0);
-                this.Patron.Server.Send(packet);
-                Thread.Sleep(500);
 
-                packet = new NexonClientPacket(this.Patron, 0x39);
-                packet.WriteU1(1);
-                packet.WriteU4(guid);
-                packet.WriteU1(0);
-                packet.WriteU1(0x4a);
-                packet.WriteU1(0x0a);
-                packet.WriteU1(0xb9);
-                packet.WriteU1(0xd0);
-                packet.WriteU1(0xb7);
-                packet.WriteU1(0xb9);
-                packet.WriteU1(0xbd);
-                packet.WriteU1(0xba);
-                packet.WriteU1(0xb8);
-                packet.WriteU1(0xae);
-                packet.WriteU1(0xc4);
-                packet.WriteU1(0xdd);
-                packet.WriteU1(0);
-                this.Patron.Server.Send(packet);
+                    NexonClientPacket packet = new NexonClientPacket(this.Patron, 0x43);
+                    packet.WriteU1(1);
+                    packet.WriteU4(guid);
+                    packet.WriteU1(0);
+                    this.Patron.Server.Send(packet);
+                    Thread.Sleep(500);
 
-                packet = new NexonClientPacket(this.Patron, 0x39);
-                packet.WriteU1(1);
-                packet.WriteU4(guid);
-                packet.WriteU1(0);
-                packet.WriteU1(0x4c);
-                packet.WriteU1(0x0a);
-                packet.WriteU1(0xb9);
-                packet.WriteU1(0xd0);
-                packet.WriteU1(0xb7);
-                packet.WriteU1(0xb9);
-                packet.WriteU1(0xbd);
-                packet.WriteU1(0xba);
-                packet.WriteU1(0xb8);
-                packet.WriteU1(0xae);
-                packet.WriteU1(0xc4);
-                packet.WriteU1(0xdd);
-                packet.WriteU1(0x03);
-                packet.WriteU1(0x31);
-                packet.WriteU1(0x30);
-                packet.WriteU1(0x30);
-                packet.WriteU1(0);
-                this.Patron.Server.Send(packet);
-                Thread.Sleep(500);
+                    packet = new NexonClientPacket(this.Patron, 0x39);
+                    packet.WriteU1(1);
+                    packet.WriteU4(guid);
+                    packet.WriteU1(0);
+                    packet.WriteU1(0x40);
+                    packet.WriteU1(0);
+                    this.Patron.Server.Send(packet);
+                    Thread.Sleep(500);
+
+                    packet = new NexonClientPacket(this.Patron, 0x39);
+                    packet.WriteU1(1);
+                    packet.WriteU4(guid);
+                    packet.WriteU1(0);
+                    packet.WriteU1(0x4a);
+                    packet.WriteU1(0x0a);
+                    packet.WriteU1(0xb9);
+                    packet.WriteU1(0xd0);
+                    packet.WriteU1(0xb7);
+                    packet.WriteU1(0xb9);
+                    packet.WriteU1(0xbd);
+                    packet.WriteU1(0xba);
+                    packet.WriteU1(0xb8);
+                    packet.WriteU1(0xae);
+                    packet.WriteU1(0xc4);
+                    packet.WriteU1(0xdd);
+                    packet.WriteU1(0);
+                    this.Patron.Server.Send(packet);
+
+                    packet = new NexonClientPacket(this.Patron, 0x39);
+                    packet.WriteU1(1);
+                    packet.WriteU4(guid);
+                    packet.WriteU1(0);
+                    packet.WriteU1(0x4c);
+                    packet.WriteU1(0x0a);
+                    packet.WriteU1(0xb9);
+                    packet.WriteU1(0xd0);
+                    packet.WriteU1(0xb7);
+                    packet.WriteU1(0xb9);
+                    packet.WriteU1(0xbd);
+                    packet.WriteU1(0xba);
+                    packet.WriteU1(0xb8);
+                    packet.WriteU1(0xae);
+                    packet.WriteU1(0xc4);
+                    packet.WriteU1(0xdd);
+                    packet.WriteU1(0x03);
+                    packet.WriteU1(0x31);
+                    packet.WriteU1(0x30);
+                    packet.WriteU1(0x30);
+                    packet.WriteU1(0);
+                    this.Patron.Server.Send(packet);
+                    Thread.Sleep(500);
+
+                    Patron.PanelClose();
+                }
 
             }
             else if (Patron.Field.Name.Contains("지하묘지대기실"))
@@ -895,6 +925,7 @@
                 packet.WriteU1(0x2c);
                 packet.WriteU1(0);
                 this.Patron.Server.Send(packet);
+
 
                 Thread.Sleep(100);
             }
