@@ -1071,6 +1071,14 @@
             base.Client.Send(packet);
         }
 
+        public void SpeakSkill(string text)
+        {
+            NexonClientPacket packet = new NexonClientPacket(this, 0x4e);
+            packet.WriteC1(text);
+            packet.WriteU1(0);
+            base.Server.Send(packet);
+        }
+
         public void SpeakMessageReceived(string text)
         {
             if (this.OnSpeakMessageReceived != null)

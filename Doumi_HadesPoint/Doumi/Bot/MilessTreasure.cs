@@ -85,7 +85,13 @@
         }
 
         public void AutoMove()
-        {
+        { 
+            if (Patron.TryGetStockS("이아의구원") == false)
+            {
+                Patron.UseStockS("밀레스리콜");
+
+                return;
+            }
 
             while ((this.Patron != null) && this._flag)
             {
@@ -367,8 +373,8 @@
 
                     Thread.Sleep(1000);
 
-                    if(Patron.X >= 15 && Patron.X <= 15 + rx1 &&
-                        Patron.Y >= 25 & Patron.Y <= 25+ry1)
+                    if (Patron.X >= 15 && Patron.X <= 15 + rx1 &&
+                        Patron.Y >= 25 & Patron.Y <= 25 + ry1)
                     {
                         Patron.MoveByTeleport(Patron, 15, 22);
                         Patron.Walk(0, 1);
@@ -669,6 +675,7 @@
         public void Revive()
         {
 
+
             if (this.Patron.Field.Name.Contains("빛의신전"))
             {
                 uint guid = 0;
@@ -700,7 +707,7 @@
                     this.Patron.Server.Send(packet);
                     Thread.Sleep(100);
                 }
-                
+
                 packet = new NexonClientPacket(this.Patron, 0x3a);
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
@@ -750,11 +757,95 @@
                 }
             }
 
+            if (Patron.TryGetStockS("9[TEST]테슬러의깃털(1일)") == false)
+            {
+                Thread.Sleep(3000);
 
+                if (Patron.TryGetStockS("시장리콜") == true && 
+                    (Patron.Field.Name.StartsWith("시장은행") == false &&
+                    Patron.Field.Name.StartsWith("시장2") == false))
+                {
+                    Patron.UseStockS("시장리콜");
+                }
+
+                if (Patron.Field.Name.StartsWith("시장2"))
+                {
+                    uint guid = 0;
+
+                    foreach (var pair2 in Patron.Field.Mundanes)
+                    {
+                        if (pair2.Value.Name == "백원만")
+                        {
+                            guid = pair2.Value.Guid;
+                            break;
+                        }
+
+
+                    }
+                    Patron.SpeakSkill("이동");
+                    Thread.Sleep(500);
+
+                    NexonClientPacket packet = new NexonClientPacket(this.Patron, 0x3a);
+                    packet.WriteU1(1);
+                    packet.WriteU4(guid);
+                    packet.WriteU1(0);
+                    packet.WriteU1(0);
+                    packet.WriteU1(0);
+                    packet.WriteU1(2);
+                    packet.WriteU1(1);
+                    packet.WriteU1(3);
+                    packet.WriteU1(0);
+                    this.Patron.Server.Send(packet);
+                    Thread.Sleep(500);
+
+
+                    NexonClientPacket packet1 = new NexonClientPacket(this.Patron, 0x3a);
+                    packet1.WriteU1(1);
+                    packet1.WriteU4(guid);
+                    packet1.WriteU1(0);
+                    packet1.WriteU1(0);
+                    packet1.WriteU1(0);
+                    packet1.WriteU1(2);
+                    packet1.WriteU1(0);
+                    this.Patron.Server.Send(packet1);
+                    Thread.Sleep(500);
+                }
+                else if (Patron.Field.Name.StartsWith("시장은행"))
+                {
+                    if (this.Patron.TryGetStockS("9[TEST]테슬러의깃털(1일)") == false)
+                    {
+                        this.Patron.SpeakSkill("주세요");
+
+                        Thread.Sleep(500);
+
+                        NexonClientPacket packet = new NexonClientPacket(this.Patron, 0x3a);
+                        packet.WriteU1(1);
+                        packet.WriteU4(Patron.EXPNpc);
+                        packet.WriteU1(0);
+                        packet.WriteU1(0);
+                        packet.WriteU1(0);
+                        packet.WriteU1(2);
+                        packet.WriteU1(1);
+                        packet.WriteU1(2);
+                        packet.WriteU1(0);
+                        this.Patron.Server.Send(packet);
+
+                        this.Patron.PanelClose();
+                        
+                        Thread.Sleep(500);
+                    }
+
+
+                }
+            }
+            if (Patron.TryGetStockS("9[TEST]테슬러의깃털(1일)") == false)
+            {
+                return;
+            }
 
             if (Patron.Field.Name.Contains("지하묘지") == false &&
-                Patron.Field.Name.Contains("밀레스마을") == false &&
-                Patron.TryGetStockS("밀레스리콜") == true)
+            Patron.Field.Name.Contains("밀레스마을") == false &&
+            Patron.TryGetStockS("밀레스리콜") == true)
             {
                 Patron.UseStockS("밀레스리콜");
             }
