@@ -29,6 +29,18 @@
         public uint Guid;
         public uint ShopNpc;
         public uint EXPNpc;
+        public byte num;
+        public byte b1;
+        public byte b2;
+        public byte b3;
+        public byte b4;
+        public byte b5;
+        public byte b6;
+        public byte b7;
+        public byte b8;
+        public byte b9;
+        public byte b10;
+        public string NPCName;
         public ushort X;
         public ushort Y;
         public Doumi.Types.Certificate certificate;

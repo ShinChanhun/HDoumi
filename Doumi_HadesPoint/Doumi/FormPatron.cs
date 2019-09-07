@@ -394,7 +394,7 @@
 
             this.chk세토아가호.Checked = false;
             this.chk이아가호.Checked = true;
-            this.chk걸리적.Checked = true;
+            //this.chk걸리적.Checked = true;
             //this.check레드.Checked = true;
 
             //this.chk맵이동.Checked = true;

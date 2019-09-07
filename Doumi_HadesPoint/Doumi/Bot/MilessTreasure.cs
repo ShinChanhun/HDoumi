@@ -70,6 +70,11 @@
             while ((this.Patron != null) && this._flag)
             {
                 Thread.Sleep(2000);
+
+
+                if (Patron.Field.Name.Contains("밀레스잡화상점B"))
+                    continue;
+
                 Patron.Refresh();
 
             }
@@ -456,7 +461,7 @@
                 if (Patron.X >= 43 && Patron.X <= 43 + rx2 &&
                     Patron.Y >= 43 && Patron.Y <= 43 + ry2)
                 {
-                    switch (r)
+                    switch (2)
                     {
                         case 0:
                             Patron.MoveByTeleport(Patron, 37, 39);
@@ -675,6 +680,9 @@
                         break;
                     }
                 }
+
+
+                //d2->d3
                 NexonClientPacket packet = new NexonClientPacket(this.Patron, 0x43);
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
@@ -686,16 +694,17 @@
                     packet = new NexonClientPacket(this.Patron, 0x3a);
                     packet.WriteU1(1);
                     packet.WriteU4(guid);
-                    packet.WriteU2(0xd2);
+                    packet.WriteU2(0x0109);
                     packet.WriteU2(i);
                     packet.WriteU2(0);
                     this.Patron.Server.Send(packet);
                     Thread.Sleep(100);
                 }
+                
                 packet = new NexonClientPacket(this.Patron, 0x3a);
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
-                packet.WriteU2(0xd2);
+                packet.WriteU2(0x0109);
                 packet.WriteU2(5);
                 packet.WriteU1(1);
                 packet.WriteU1(1);
@@ -776,6 +785,8 @@
             }
             else if (Patron.Field.Name.Contains("밀레스잡화상점B"))
             {
+                Thread.Sleep(2000);
+
                 uint guid = 0;
                 foreach (var pair2 in Patron.Field.Mundanes)
                 {
@@ -841,23 +852,32 @@
                     packet.WriteU1(0xae);
                     packet.WriteU1(0xc4);
                     packet.WriteU1(0xdd);
-                    packet.WriteU1(0x03);
-                    packet.WriteU1(0x31);
-                    packet.WriteU1(0x30);
-                    packet.WriteU1(0x30);
+                    packet.WriteU1(0x02);
+                    packet.WriteU1(0x39);
+                    packet.WriteU1(0x39);
                     packet.WriteU1(0);
+
+
                     this.Patron.Server.Send(packet);
-                    Thread.Sleep(500);
+
 
                     Patron.PanelClose();
+                    Thread.Sleep(500);
+
                 }
 
             }
             else if (Patron.Field.Name.Contains("지하묘지대기실"))
             {
-                Patron.mTeleport.WaitOne();
-                Patron.MoveByTeleport(this.Patron, 2, 3);
-                Patron.mTeleport.ReleaseMutex();
+
+                int rx = Patron.r.Next(0, 4);
+                int ry = Patron.r.Next(0, 4);
+                if (Patron.X < 5 || Patron.X > 9 || Patron.Y < 1 || Patron.Y > 5)
+                {
+                    Patron.mTeleport.WaitOne();
+                    Patron.MoveByTeleport(this.Patron, 5 + rx, 1 + ry);
+                    Patron.mTeleport.ReleaseMutex();
+                }
 
                 uint guid = 0;
                 foreach (var pair2 in Patron.Field.Mundanes)
@@ -880,8 +900,9 @@
                 packet = new NexonClientPacket(this.Patron, 0x3a);
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
-                packet.WriteU1(0);
-                packet.WriteU1(0xd4);
+                packet.WriteU1(1);
+                packet.WriteU1(11);
+                //packet.WriteU1(0xd5);
                 packet.WriteU1(0);
                 packet.WriteU1(0x0c);
                 packet.WriteU1(1);
@@ -894,8 +915,8 @@
                 packet = new NexonClientPacket(this.Patron, 0x3a);
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
-                packet.WriteU1(0);
-                packet.WriteU1(0xd4);
+                packet.WriteU1(1);
+                packet.WriteU1(11);
                 packet.WriteU1(0);
                 packet.WriteU1(0x15);
                 packet.WriteU1(0);
@@ -905,8 +926,8 @@
                 packet = new NexonClientPacket(this.Patron, 0x3a);
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
-                packet.WriteU1(0);
-                packet.WriteU1(0xd4);
+                packet.WriteU1(1);
+                packet.WriteU1(11);
                 packet.WriteU1(0);
                 packet.WriteU1(0x1b);
                 packet.WriteU1(1);
@@ -919,8 +940,8 @@
                 packet = new NexonClientPacket(this.Patron, 0x3a);
                 packet.WriteU1(1);
                 packet.WriteU4(guid);
-                packet.WriteU1(0);
-                packet.WriteU1(0xd4);
+                packet.WriteU1(1);
+                packet.WriteU1(11);
                 packet.WriteU1(0);
                 packet.WriteU1(0x2c);
                 packet.WriteU1(0);
