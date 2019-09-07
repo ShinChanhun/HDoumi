@@ -549,36 +549,16 @@
                     this.chk콜라.Checked = false;
                     this.chk리플.Checked = false;
                     break;
-                case "튼밀하나":
-                    if (this._milessTresure == null)
-                    {
-                        this._milessTresure = new MilessTresure(this.Patron);
-                        this._milessTresure.Start();
-                    }
+                case "지존하나":
+
                     this.chk밀트1.Checked = true;
                     break;
-                case "튼밀둘":
-                    if (this._milessTresure == null)
-                    {
-                        this._milessTresure = new MilessTresure(this.Patron);
-                        this._milessTresure.Start();
-                    }
+                case "지존둘":
+
                     this.chk밀트2.Checked = true;
                     break;
-                case "튼밀셋":
-                    if (this._milessTresure == null)
-                    {
-                        this._milessTresure = new MilessTresure(this.Patron);
-                        this._milessTresure.Start();
-                    }
-                    this.chk밀트3.Checked = true;
-                    break;
-                case "튼밀넷":
-                    if (this._milessTresure == null)
-                    {
-                        this._milessTresure = new MilessTresure(this.Patron);
-                        this._milessTresure.Start();
-                    }
+                case "지존셋":
+
                     this.chk밀트3.Checked = true;
                     break;
             }

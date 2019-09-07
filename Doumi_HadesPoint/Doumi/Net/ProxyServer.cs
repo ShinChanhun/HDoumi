@@ -999,17 +999,50 @@
             patron.Client.Send(packet);
         }
 
+
         private void Server30(ProxyPatron patron, NexonPacket packet)
         {
             byte num = packet.ReadU1();
             packet.ReadU1();
-            if (num == 2)
-            {
-                patron.EXPNpc = packet.ReadU4();
-            }
-            patron.Client.Send(packet);
-        }
+            patron.EXPNpc = packet.ReadU4();
+            packet.ReadU1();
+            packet.ReadU1();
+            packet.ReadU1();
+            packet.ReadU1();
+            packet.ReadU1();
+            packet.ReadU1();
+            packet.ReadU1();
+            packet.ReadU1();
+            packet.ReadU1();
+            packet.ReadU1();
+            patron.NPCName = packet.ReadC1();
 
+            if (patron.NPCName == "꼬마도우미")
+            {
+                NexonClientPacket packet3 = new NexonClientPacket(patron, 58);
+                packet3.WriteU1(1);
+                packet3.WriteU4(patron.EXPNpc);
+                packet3.WriteU1(0);
+                packet3.WriteU1(0);
+                packet3.WriteU1(0);
+                packet3.WriteU1(1);
+                packet3.WriteU1(0);
+                packet3.WriteU1(0);
+
+                patron.Server.Send(packet3);
+
+                if (patron.isLoad == false)
+                {
+                    patron.Form.Mil();
+                }
+
+            }
+
+
+
+            patron.Client.Send(packet);
+
+        }
         private void Server33(ProxyPatron patron, NexonPacket packet)
         {
             bool flag = false;
